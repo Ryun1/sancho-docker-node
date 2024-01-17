@@ -1,0 +1,21 @@
+version: "3.5"
+
+services:
+  sancho-node:
+    container_name: sancho-node
+    network_mode: "host"
+    build: ./
+    restart: always
+    volumes:
+      - ./node-db:/data/db
+      - ./node-config:/config
+      - ./node-ipc:/ipc
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+
+volumes:
+  node-db:
+  node-ipc:

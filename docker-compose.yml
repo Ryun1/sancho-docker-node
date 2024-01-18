@@ -10,6 +10,8 @@ services:
       - ./node-db:/data/db
       - ./node-config:/config
       - ./node-ipc:/ipc
+      - ./keys:/keys
+      - ./txs:/txs
     logging:
       driver: "json-file"
       options:

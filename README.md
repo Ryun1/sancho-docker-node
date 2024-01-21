@@ -11,6 +11,9 @@ https://code.visualstudio.com/
 **Windows**
 https://learn.microsoft.com/en-us/windows/wsl/install
 
+**Mac**
+https://brew.sh/
+
 ### `wget`
 
 **Mac**
@@ -69,6 +72,4 @@ $ ./scripts/generate-keys.sh
 #### Get yourself some tAda
 
 Go to the faucet and request some tAda sent to your new address.
-
-Open your keys
 

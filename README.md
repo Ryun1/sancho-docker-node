@@ -1,7 +1,7 @@
 
 # SanchoNet docker node 🤠
 
-## Requirements
+## Prerequisites
 
 ### Visual Studio Code
 

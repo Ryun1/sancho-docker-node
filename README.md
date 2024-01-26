@@ -15,11 +15,6 @@ Install docker desktop.
 
 If you are using Apple silicon make sure you have Rosetta enabled via Docker desktop settings.
 
-### `Docker Compose`
-
-Install docker-compose.
-- https://docs.docker.com/compose/install/
-
 ## Mac Setup Guide
 
 1. Make sure you have xcode tools installed.

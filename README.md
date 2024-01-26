@@ -101,6 +101,8 @@ Check out the [scripts folder](./scripts/) and see what you'd like to do.
 
 I will give an example of what you could do.
 
+Make sure you have a node running for these.
+
 #### Become a DRep, delegate to self and vote.
 
 1. Register as a DRep.

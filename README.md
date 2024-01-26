@@ -15,33 +15,43 @@ Install docker desktop.
 
 If you are using Apple silicon make sure you have Rosetta enabled via Docker desktop settings.
 
-## Mac Setup Guide
+### Mac Prerequisites
 
-1. Make sure you have xcode tools installed.
+Make sure you have xcode tools installed.
 
 ```zsh
 xcode-select --install
 ```
 
-2. Clone this repository.
+### Windows Prerequisites
+
+WSL
+
+https://learn.microsoft.com/en-us/windows/wsl/install
+
+## Setup Guide
+
+1. Clone this repository.
 
 You may want to make a nice place for this.
 ```zsh
 git clone https://github.com/Ryun1/sancho-docker-node.git
 ```
-3. Open the `sancho-docker-node` folder from inside of VsCode.
+3. Open the `sancho-docker-node` folder from inside of Visual Studio Code.
 
-4. Add execute file provisions to the scripts
+4. Open a terminal inside of VSCode and then add execute file provisions to the scripts.
+
+Windows users will have to run this first.
+```bash
+wsl
+```
+
+Fix file permissions.
 ```zsh
 chmod +x ./start-docker.sh ./stop-docker.sh ./query-sancho.sh ./scripts/*
 ```
 
 5. Follow the [Usage section](#usage).
-
-## Windows Setup Guide
-
-https://learn.microsoft.com/en-us/windows/wsl/install
-
 
 ## Basic Usage
 - Make sure you have docker desktop open and running.

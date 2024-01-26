@@ -17,10 +17,15 @@ If you are using Apple silicon make sure you have Rosetta enabled via Docker des
 
 ### Mac Prerequisites
 
-Make sure you have xcode tools installed.
+1. xcode tools.
 
 ```zsh
 xcode-select --install
+```
+
+2. Rosetta.
+```zsh
+softwareupdate --install-rosetta
 ```
 
 ### Windows Prerequisites

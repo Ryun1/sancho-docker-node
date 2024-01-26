@@ -3,18 +3,6 @@
 
 ## Prerequisites
 
-### Visual Studio Code
-
-So we can more easily navigate directories.
-- https://code.visualstudio.com/
-
-### `Docker`
-
-Install docker desktop.
-- https://docs.docker.com/engine/install/
-
-If you are using Apple silicon make sure you have Rosetta enabled via Docker desktop settings.
-
 ### Mac Prerequisites
 
 1. xcode tools.
@@ -33,6 +21,18 @@ softwareupdate --install-rosetta
 WSL
 
 https://learn.microsoft.com/en-us/windows/wsl/install
+
+### Visual Studio Code
+
+So we can more easily navigate directories.
+- https://code.visualstudio.com/
+
+### `Docker`
+
+Install docker desktop.
+- https://docs.docker.com/engine/install/
+
+If you are using Apple silicon make sure you have Rosetta enabled via Docker desktop settings.
 
 ## Setup Guide
 

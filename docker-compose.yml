@@ -12,6 +12,7 @@ services:
       - ./node-ipc:/ipc
       - ./keys:/keys
       - ./txs:/txs
+      - ./dumps:/dumps
     logging:
       driver: "json-file"
       options:

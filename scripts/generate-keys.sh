@@ -1,5 +1,12 @@
 #!/bin/sh
 
+# Check if keys already exist
+if [ -f "./keys/drep.id" ]; then
+    echo "Keys already generated."
+    echo "Exiting."
+    exit 0
+fi
+
 # Generate keys; payment, stake and DRep.
 echo "Generating keys; payment, stake and DRep."
 echo "from keys, generate payment address, stake address and DRep ID."

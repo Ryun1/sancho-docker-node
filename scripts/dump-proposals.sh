@@ -6,4 +6,4 @@ echo "Dumping governance ledger state."
 # Set alias for convenience
 alias sancho-cli="docker exec -ti sancho-node cardano-cli"
 
-sancho-cli conway query gov-state --testnet-magic 4 | jq -r '.proposals' > proposals.json
+sancho-cli conway query gov-state --testnet-magic 4 | jq -r '.proposals' > ./dumps/proposals.json

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "Delegating your voting rights to your DRep key hash."
+echo "Delegating your voting rights to your DRep ID."
 
 # Set alias for convenience
 alias sancho-cli="docker exec -ti sancho-node cardano-cli"

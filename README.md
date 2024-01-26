@@ -22,17 +22,10 @@ Install docker-compose.
 
 ## Mac Setup Guide
 
-1. Install [Homebrew](https://brew.sh/) if you don't have it.
+1. Make sure you have xcode tools installed.
 
-Install.
 ```zsh
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
-
-Add homebrew to zprofile file (needed for Apple silicon).
-```zsh
-(echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> ~/.zprofile
-    eval "$(/opt/homebrew/bin/brew shellenv)"
+xcode-select --install
 ```
 
 2. Clone this repository.
@@ -41,7 +34,6 @@ You may want to make a nice place for this.
 ```zsh
 git clone https://github.com/Ryun1/sancho-docker-node.git
 ```
-
 3. Open the `sancho-docker-node` folder from inside of VsCode.
 
 4. Add execute file provisions to the scripts

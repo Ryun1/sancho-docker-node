@@ -35,27 +35,21 @@ Add homebrew to zprofile file (needed for Apple silicon).
     eval "$(/opt/homebrew/bin/brew shellenv)"
 ```
 
-2. Install `wget`.
-
-```zsh
-brew install wget
-```
-
-3. Clone this repository.
+2. Clone this repository.
 
 You may want to make a nice place for this.
 ```zsh
 git clone https://github.com/Ryun1/sancho-docker-node.git
 ```
 
-4. Open the `sancho-docker-node` folder from inside of VsCode.
+3. Open the `sancho-docker-node` folder from inside of VsCode.
 
-5. Add execute file provisions to the scripts
+4. Add execute file provisions to the scripts
 ```zsh
 chmod +x ./start-docker.sh ./stop-docker.sh ./query-sancho.sh ./scripts/*
 ```
 
-6. Follow the [Usage section](#usage).
+5. Follow the [Usage section](#usage).
 
 ## Windows Setup Guide
 

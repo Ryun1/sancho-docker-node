@@ -1,6 +1,6 @@
 #!/bin/sh
 
-ga_hash="0ce78e5d0b2ff4079aa28a5d500e49b1f78ad35807656fae6a76aa11b4e3fcb4"
+ga_hash="5ee6d63ebf2d1568802ddf5c61b4494c8bef0b8db6fd9139a76e39c496e08ac5"
 ga_index="0"
 
 # Registering your stake key

@@ -3,6 +3,9 @@
 
 **Current version:** node `8.8.1-pre`
 
+A simple dockerized Cardano node setup, for SanchoNet testing.
+Accompanied with a few helpful scripts for cardano-cli.
+
 ## Prerequisites
 
 ### Mac Prerequisites

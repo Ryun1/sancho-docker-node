@@ -8,8 +8,7 @@ if [ -f "./keys/cc-cold.vkey" ]; then
 fi
 
 # Generate cc keys
-echo "Generating consitutional committee keys."
-echo "from keys, generate payment address, stake address and DRep ID."
+echo "Generating consitutional committee hot and cold keys."
 
 # Set alias for convenience
 alias sancho-cli="docker exec -ti sancho-node cardano-cli"

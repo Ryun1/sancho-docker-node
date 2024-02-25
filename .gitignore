@@ -2,4 +2,6 @@
 keys/
 txs/
 dumps/
-*.json
+node-config/
+node-db/
+node-ipc/

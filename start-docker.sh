@@ -1,6 +1,11 @@
 #!/bin/sh
 
-# Pull the latest Node config files
+# if no node-config directory exists, create it
+if [ ! -d ./node-config ]; then
+  mkdir -p ./node-config
+fi
+
+# Pull the latest Node config files, put them inside the node-config directory
 cd ./node-config
 curl --silent -O -J -L https://book.world.dev.cardano.org/environments/sanchonet/config.json
 curl --silent -O -J -L https://book.world.dev.cardano.org/environments/sanchonet/topology.json
@@ -10,8 +15,14 @@ curl --silent -O -J -L https://book.world.dev.cardano.org/environments/sanchonet
 curl --silent -O -J -L https://book.world.dev.cardano.org/environments/sanchonet/conway-genesis.json
 cd ..
 
-# Remove any existing socket
-rm -rf ./node-ipc/node.socket
+
+# if no node-db directory exists, create it
+if [ ! -d ./node-db ]; then
+  mkdir -p ./node-db
+fi
+
+# Remove any existing socket by overwriting it with an empty directory
+mkdir -p ./node-config
 
 # Start the Docker container
 docker-compose up -d --build

@@ -1,6 +1,8 @@
 
 # SanchoNet docker node 🤠
 
+**Current version:** node `8.8.1-pre`
+
 ## Prerequisites
 
 ### Mac Prerequisites

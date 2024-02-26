@@ -1,6 +1,6 @@
 #!/bin/sh
 
-ga_hash="5ee6d63ebf2d1568802ddf5c61b4494c8bef0b8db6fd9139a76e39c496e08ac5"
+ga_hash="d34c2b2899a4b80e52a487067ca8c9b8a909208ca42d6c35f895944de7866d1b"
 ga_index="0"
 
 # Voting on a governance action

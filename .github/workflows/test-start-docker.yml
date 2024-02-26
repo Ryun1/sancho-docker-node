@@ -1,0 +1,16 @@
+name: test start docker
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test-start-docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository to the runner
+        uses: actions/checkout@v4  
+      - name: Run a script
+        run: ./start-docker.sh

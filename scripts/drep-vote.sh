@@ -1,16 +1,19 @@
 #!/bin/sh
 
-ga_hash="d34c2b2899a4b80e52a487067ca8c9b8a909208ca42d6c35f895944de7866d1b"
+# ~~~~~~~~~~~~ CHANGE THIS ~~~~~~~~~~~~
+choice="yes" # "yes", "no" or "abstain"
+ga_hash="66cbbf693a8549d0abb1b5219f1127f8176a4052ef774c11a52ff18ad1845102"
 ga_index="0"
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Voting on a governance action
-echo "Voting on $ga_hash"
+echo "Voting on $ga_hash#$ga_index"
 
 # Set alias for convenience
 alias container-cli="docker exec -ti sancho-node cardano-cli"
 
 container-cli conway governance vote create \
-    --yes \
+    "--$choice" \
     --governance-action-tx-id $ga_hash \
     --governance-action-index $ga_index \
     --drep-verification-key-file ./keys/drep.vkey \

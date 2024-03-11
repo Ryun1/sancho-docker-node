@@ -8,7 +8,7 @@ alias container-cli="docker exec -ti sancho-node cardano-cli"
 
 container-cli conway stake-address deregistration-certificate \
  --stake-verification-key-file ./keys/stake.vkey \
- --key-reg-deposit-amt 2000000 \
+ --key-reg-deposit-amt $(container-cli conway query gov-state --testnet-magic 4 | jq -r .enactState.curPParams.keyDeposit) \
  --out-file ./txs/stake-deregistration.cert
 
 container-cli conway transaction build \

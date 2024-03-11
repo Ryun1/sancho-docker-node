@@ -1,7 +1,5 @@
 #!/bin/sh
 
-depositRefundAmt=$(docker exec -ti sancho-node cardano-cli conway query gov-state --testnet-magic 4 | jq -r .enactState.curPParams.dRepDeposit)
-
 # Retiring you as a drep
 echo "Retiring you as a DRep."
 
@@ -10,7 +8,7 @@ alias container-cli="docker exec -ti sancho-node cardano-cli"
 
 container-cli conway governance drep retirement-certificate \
  --drep-key-hash $(cat ./keys/drep.id) \
- --deposit-amt $depositRefundAmt \
+ --deposit-amt $(container-cli conway query gov-state --testnet-magic 4 | jq -r .enactState.curPParams.dRepDeposit) \
  --out-file ./txs/drep-retire.cert
 
 container-cli conway transaction build \

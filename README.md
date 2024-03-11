@@ -128,23 +128,23 @@ Make sure you have a node running for these.
 1. Register as a DRep.
 
 ```bash
-./scripts/drep-register.sh
+./scripts/drep/drep-register.sh
 ```
 
 2. Register your stake key (needed before delegating).
 
 ```bash
-./scripts/stake-key-register.sh
+./scripts/drep/stake-key-register.sh
 ```
 
 3. Delegate your tAda's voting rights to yourself.
 
 ```bash
-./scripts/drep-delegate.sh
+./scripts/drep/drep-delegate.sh
 ```
 
 4. Vote on a random Governance Action.
 
 ```bash
-./scripts/drep-vote.sh
+./scripts/drep/drep-vote.sh
 ```

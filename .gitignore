@@ -2,6 +2,4 @@
 keys/
 txs/
 dumps/
-node-config/
-node-db/
-node-ipc/
+node/

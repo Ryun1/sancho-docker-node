@@ -7,9 +7,9 @@ services:
     build: ./
     restart: always
     volumes:
-      - ./node-db:/data/db
-      - ./node-config:/config
-      - ./node-ipc:/ipc
+      - ./node/db:/data/db
+      - ./node/config:/config
+      - ./node/ipc:/ipc
       - ./keys:/keys
       - ./txs:/txs
       - ./dumps:/dumps

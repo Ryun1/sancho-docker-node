@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Remove database files
-rm -rf ./node-db
+rm -rf ./node/db
 
 # Recreate database files
-mkdir ./node-db
+mkdir ./node/db

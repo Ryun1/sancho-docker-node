@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# if no node-config directory exists, create it
+# If no node-config directory exists, create it
 if [ ! -d ./node-config ]; then
   mkdir -p ./node-config
 fi
@@ -15,8 +15,7 @@ curl --silent -O -J -L https://book.world.dev.cardano.org/environments/sanchonet
 curl --silent -O -J -L https://book.world.dev.cardano.org/environments/sanchonet/conway-genesis.json
 cd ..
 
-
-# if no node-db directory exists, create it
+# If no node-db directory exists, create it
 if [ ! -d ./node-db ]; then
   mkdir -p ./node-db
 fi

@@ -86,7 +86,7 @@ If you want to stop the logs (but the node is still running) you can press `cont
 In a separate terminal to your running node, you can check its sync progress via this.
 
 ```bash
-./scripts/node-query.sh
+./scripts/node-query-tip.sh
 ```
 
 ### Stop Node

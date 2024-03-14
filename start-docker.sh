@@ -5,7 +5,7 @@ if [ ! -d ./node/config ]; then
   mkdir -p ./node/config
 fi
 
-# Pull the latest Node config files, put them inside the node-config directory
+# Pull the latest Node config files, put them inside the node/config directory
 cd ./node/config
 curl --silent -O -J -L https://book.world.dev.cardano.org/environments/sanchonet/config.json
 curl --silent -O -J -L https://book.world.dev.cardano.org/environments/sanchonet/topology.json

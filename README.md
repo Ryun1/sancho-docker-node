@@ -4,7 +4,8 @@
 **Current version:** node `8.9.0`
 
 A simple dockerized Cardano node setup, for SanchoNet testing.
-Accompanied with a few helpful scripts for cardano-cli.
+
+Accompanied by a few helpful scripts for cardano-cli to interact with the node and SanchoNet.
 
 ## Prerequisites
 
@@ -17,7 +18,7 @@ If you are using Apple silicon (M1, M2, M3 processor) make sure you have Rosetta
 
 ### Visual Studio Code
 
-So we can more easily navigate directories, and inspect files.
+Install VSCode so we can more easily navigate directories, and inspect files.
 - https://code.visualstudio.com/
 
 ### Mac Specific Prerequisites
@@ -231,7 +232,7 @@ Make sure you have a node running for these.
 ### Docker desktop application not open
 
 ```bash
-Cannot connect to the Docker daemon at unix:///Users/ryan/.docker/run/docker.sock. Is the docker daemon running?
+Cannot connect to the Docker daemon at unix:///Users/XXXX/.docker/run/docker.sock. Is the docker daemon running?
 ```
 
 **Fix:** Open docker desktop

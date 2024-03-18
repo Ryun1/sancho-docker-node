@@ -1,7 +1,7 @@
 
 # SanchoNet docker node 🤠
 
-**Current version:** node `8.8.1-pre`
+**Current version:** node `8.9.0`
 
 A simple dockerized Cardano node setup, for SanchoNet testing.
 Accompanied with a few helpful scripts for cardano-cli.
@@ -23,76 +23,137 @@ softwareupdate --install-rosetta
 
 ### Windows Prerequisites
 
-WSL
+Windows Subsystem for Linux.
 
-https://learn.microsoft.com/en-us/windows/wsl/install
-
-### Visual Studio Code
-
-So we can more easily navigate directories.
-- https://code.visualstudio.com/
+[How to Install WSL on Windows](https://learn.microsoft.com/en-us/windows/wsl/install)
 
 ### `Docker`
 
-Install docker desktop.
+Install docker desktop for your operating system.
 - https://docs.docker.com/engine/install/
 
-If you are using Apple silicon make sure you have Rosetta enabled via Docker desktop settings.
+If you are using Apple silicon (M1, M2, M3 processor) make sure you have Rosetta enabled via Docker desktop settings.
+
+### Visual Studio Code
+
+So we can more easily navigate directories, and inspect files.
+- https://code.visualstudio.com/
 
 ## Setup Guide
 
-1. Clone this repository.
+### 1. Clone this repository.
 
-You may want to make a nice place for this.
-```zsh
+You may want to make a nice folder/directory for this first.
+```bash
 git clone https://github.com/Ryun1/sancho-docker-node.git
 ```
-3. Open the `sancho-docker-node` folder from inside of Visual Studio Code.
 
-4. Open a terminal inside of VSCode and then add execute file provisions to the scripts.
+### 2. Open `sancho-docker-node` from within Visual Studio Code.
+
+Open Visual Studio Code and then go `File > Open Folder` selecting `sancho-docker-node` folder.
+
+![Open Folder VS Code](images/setup-2.png)
+
+### 3. Open a terminal in Visual Studio Code.
+
+Open a terminal inside of VSCode.
+
+![Open Terminal Console](images/setup-3.png)
+
+### 4. Update script permissions.
+
+Inside the terminal console, give scripts execute file permissions.
 
 Windows users will have to run this first.
 ```bash
 wsl
 ```
 
-Fix file permissions.
+Run the following command.
 ```zsh
 chmod +x ./start-docker.sh ./stop-docker.sh ./scripts/*
 ```
 
-5. Follow the [Usage section](#usage).
+![Fix permissions](images/setup-4.png)
+
+**Note:** Make sure your terminal shows the correct directory `sancho-docker-node`.
 
 ## Basic Usage
-- Make sure you have docker desktop open and running.
-- I have written a few useful bash scripts that you can use.
 
-### Start Node
+**Note:** Before any usage ensure you have docker desktop open and running.
 
-This script:
+### Start node
+
+We have a script that:
 - pulls the latest SanchoNet node configs
 - pulls the Cardano node docker image
 - builds and runs the Cardano node image
-- pushes the Node logs to the terminal
+- pushes the node logs to the terminal
 
+In your terminal execute:
 ```bash
 ./start-docker.sh
 ```
 
 If you want to stop the logs (but the node is still running) you can press `control + c`.
 
-#### Check Node is running
+This should look something like:
 
-In a separate terminal to your running node, you can check its sync progress via this.
+![Starting node](images/usage-start.png)
 
+**Note:** The first time you do this the node will take a long time to synchronize to the network.
+
+### Check node is running
+
+#### 1. Open a new terminal
+
+Press the plus plus at the top right of your terminal window.
+
+![Open new terminal](./images/usage-check-1.png)
+
+#### 2. Query tip of node.
+
+In your second terminal execute:
 ```bash
 ./scripts/node-query-tip.sh
 ```
 
-### Stop Node
+For a fully synced node the terminal should return, with `syncProgress` of `100.00`.
+
+```bash
+{
+    "block": 1185368,
+    "epoch": 277,
+    "era": "Conway",
+    "hash": "13d654899faabb50522f7f608e8d627acaaa8206347c913b0e74754538754eb5",
+    "slot": 24011698,
+    "slotInEpoch": 78898,
+    "slotsToEpochEnd": 7502,
+    "syncProgress": "100.00"
+}
+```
+
+For a un-fully synced node the terminal should return, with `syncProgress` of less than `100.00`.
+You will have to wait till fully synced node before being able to interact with the network.
+
+```bash
+{
+    "block": 14646,
+    "epoch": 3,
+    "era": "Babbage",
+    "hash": "d72cb1cfb7f7eb9d457d48c0d3e165170565eb371f8f5c7cb3d6d212be97c797",
+    "slot": 292713,
+    "slotInEpoch": 33513,
+    "slotsToEpochEnd": 52887,
+    "syncProgress": "1.22"
+}
+```
+
+### Stop node
 
 This script will stop your Cardano node.
 
+In your second terminal execute:
 ```bash
 ./stop-docker.sh
 ```
@@ -148,3 +209,13 @@ Make sure you have a node running for these.
 ```bash
 ./scripts/drep/drep-vote.sh
 ```
+
+## Common Error Messages
+
+### Docker desktop not open
+
+```bash
+Cannot connect to the Docker daemon at unix:///Users/ryan/.docker/run/docker.sock. Is the docker daemon running?
+```
+
+Fix: Open docker desktop

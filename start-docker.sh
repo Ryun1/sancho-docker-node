@@ -1,28 +1,47 @@
 #!/bin/sh
 
-# If no node config directory exists, create it
-if [ ! -d ./node/config ]; then
-  mkdir -p ./node/config
+# Set directory locations
+node_dir="./node"
+config_dir="$node_dir/config"
+db_dir="$node_dir/db"
+ipc_dir="$node_dir/ipc"
+
+# Base URL for node config files
+config_base_url="https://book.world.dev.cardano.org/environments/sanchonet/"
+
+# Pull the latest node config files, put them inside the node/config directory
+
+# Create db directory if it doesn't exist
+if [ ! -d "$db_dir" ]; then
+  mkdir -p "$db_dir"
 fi
 
-# Pull the latest Node config files, put them inside the node/config directory
-cd ./node/config
-curl --silent -O -J -L https://book.world.dev.cardano.org/environments/sanchonet/config.json
-curl --silent -O -J -L https://book.world.dev.cardano.org/environments/sanchonet/topology.json
-curl --silent -O -J -L https://book.world.dev.cardano.org/environments/sanchonet/byron-genesis.json
-curl --silent -O -J -L https://book.world.dev.cardano.org/environments/sanchonet/shelley-genesis.json
-curl --silent -O -J -L https://book.world.dev.cardano.org/environments/sanchonet/alonzo-genesis.json
-curl --silent -O -J -L https://book.world.dev.cardano.org/environments/sanchonet/conway-genesis.json
-cd ..
-cd ..
+# Remove existing ipc directory if it exists and create a new one
+if [ -d "$ipc_dir" ]; then
+  rm -rf "$ipc_dir"
+fi
+mkdir -p "$ipc_dir"
 
-# If no node db directory exists, create it
-if [ ! -d ./node/db ]; then
-  mkdir -p ./node/db
+# Create config directory if it doesn't exist
+if [ ! -d "$config_dir" ]; then
+  mkdir -p "$config_dir"
 fi
 
-# Remove any existing socket by overwriting it with an empty directory
-mkdir -p ./node/config
+# List of JSON files to download
+config_files=(
+    "config.json"
+    "topology.json"
+    "byron-genesis.json"
+    "shelley-genesis.json"
+    "alonzo-genesis.json"
+    "conway-genesis.json"
+)
+
+# Change directory to the JSON directory and download files
+cd "$config_dir" || exit
+for file in "${config_files[@]}"; do
+    curl --silent -O -J -L "${config_base_url}${file}"
+done
 
 # Start the Docker container
 docker-compose up -d --build

@@ -7,8 +7,10 @@ spo_id="pool104flte3y29dprxcntacsuyznhduvlaza38gvp8yyhy2vvmfenxa" # keyhash of t
 # Delegating to an SPO
 echo "Delegating you to SPO: $spo_id."
 
-# Set alias for convenience
-alias container-cli="docker exec -ti sancho-node cardano-cli"
+# Function to execute cardano-cli commands inside the container
+container_cli() {
+  docker exec -ti sancho-node cardano-cli "$@"
+}
 
 container-cli conway stake-address stake-delegation-certificate \
  --stake-verification-key-file ./keys/stake.vkey \

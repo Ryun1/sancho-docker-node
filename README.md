@@ -107,9 +107,13 @@ This should look something like:
 
 #### 1. Open a new terminal
 
-Press the plus plus at the top right of your terminal window.
+Press the plus at the top right of your terminal window.
 
 ![Open new terminal](./images/usage-check-1.png)
+
+And then click on the new terminal.
+
+![Navigate to new terminal](./images/usage-check-1-b.png)
 
 #### 2. Query tip of node.
 
@@ -207,19 +211,19 @@ Make sure you have a node running for these.
 ##### 1. Register as a DRep.
 
 ```bash
-./scripts/drep/drep-register.sh
+./scripts/drep/register.sh
 ```
 
 ##### 2. Register your stake key (needed before delegating).
 
 ```bash
-./scripts/drep/stake-key-register.sh
+./scripts/stake/key-register.sh
 ```
 
 ##### 3. Delegate your tAda's voting rights to yourself.
 
 ```bash
-./scripts/drep/drep-delegate.sh
+./scripts/drep/delegate-to-self.sh
 ```
 
 ## Common Error Messages

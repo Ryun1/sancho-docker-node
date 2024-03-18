@@ -8,7 +8,19 @@ Accompanied with a few helpful scripts for cardano-cli.
 
 ## Prerequisites
 
-### Mac Prerequisites
+### `Docker`
+
+Install docker desktop for your operating system.
+- https://docs.docker.com/engine/install/
+
+If you are using Apple silicon (M1, M2, M3 processor) make sure you have Rosetta enabled via Docker desktop settings.
+
+### Visual Studio Code
+
+So we can more easily navigate directories, and inspect files.
+- https://code.visualstudio.com/
+
+### Mac Specific Prerequisites
 
 1. xcode tools.
 
@@ -21,23 +33,11 @@ xcode-select --install
 softwareupdate --install-rosetta
 ```
 
-### Windows Prerequisites
+### Windows Specific Prerequisites
 
 Windows Subsystem for Linux.
 
 [How to Install WSL on Windows](https://learn.microsoft.com/en-us/windows/wsl/install)
-
-### `Docker`
-
-Install docker desktop for your operating system.
-- https://docs.docker.com/engine/install/
-
-If you are using Apple silicon (M1, M2, M3 processor) make sure you have Rosetta enabled via Docker desktop settings.
-
-### Visual Studio Code
-
-So we can more easily navigate directories, and inspect files.
-- https://code.visualstudio.com/
 
 ## Setup Guide
 
@@ -64,7 +64,7 @@ Open a terminal inside of VSCode.
 
 Inside the terminal console, give scripts execute file permissions.
 
-Windows users will have to run this first.
+Windows users will have to run this first, to access the wsl environment.
 ```bash
 wsl
 ```
@@ -113,6 +113,13 @@ Press the plus plus at the top right of your terminal window.
 
 #### 2. Query tip of node.
 
+Run the node query tip script.
+
+Windows users will have to run this first, to access the wsl environment.
+```bash
+wsl
+```
+
 In your second terminal execute:
 ```bash
 ./scripts/node-query-tip.sh
@@ -151,7 +158,7 @@ You will have to wait till fully synced node before being able to interact with 
 
 ### Stop node
 
-This script will stop your Cardano node.
+This script will stop your Cardano node, remember to run this when you are done using your node.
 
 In your second terminal execute:
 ```bash
@@ -160,17 +167,28 @@ In your second terminal execute:
 
 ## Doing Stuff
 
-Now you have a node, you can actually do stuff ✨
+Now you have a node you can actually ✨*do fun stuff*✨
 
-### Set yourself up
+### Setup keys and get tAda
 
-1. Generate yourself some keys, addresses and a DRep ID.
+#### 1. Generate keys, addresses and a DRep ID.
 
+We have a script that:
+- randomly generates a set of payment, stake and DRep keys
+- from keys, creates addresses and a DRep ID 
+
+In a terminal execute:
 ```bash
 ./scripts/generate-keys.sh
 ```
 
-2. Get yourself some tAda, so you can make transactions.
+This will create you a keys directory with some fun things inside, looks like this:
+
+![New keys and addresses](./images/doing-1.png)
+
+#### 2. Get some tAda.
+
+Get yourself some test ada, so you can pay for transaction fees.
 
 Open your new address from [./keys/payment.addr](./keys/payment.addr).
 
@@ -186,36 +204,30 @@ Make sure you have a node running for these.
 
 #### Become a DRep, delegate to self and vote.
 
-1. Register as a DRep.
+##### 1. Register as a DRep.
 
 ```bash
 ./scripts/drep/drep-register.sh
 ```
 
-2. Register your stake key (needed before delegating).
+##### 2. Register your stake key (needed before delegating).
 
 ```bash
 ./scripts/drep/stake-key-register.sh
 ```
 
-3. Delegate your tAda's voting rights to yourself.
+##### 3. Delegate your tAda's voting rights to yourself.
 
 ```bash
 ./scripts/drep/drep-delegate.sh
 ```
 
-4. Vote on a random Governance Action.
-
-```bash
-./scripts/drep/drep-vote.sh
-```
-
 ## Common Error Messages
 
-### Docker desktop not open
+### Docker desktop application not open
 
 ```bash
 Cannot connect to the Docker daemon at unix:///Users/ryan/.docker/run/docker.sock. Is the docker daemon running?
 ```
 
-Fix: Open docker desktop
+**Fix:** Open docker desktop

@@ -11,5 +11,6 @@ jobs:
       - name: Check out the repository to the runner
         uses: actions/checkout@v4  
       - name: Run a script
+        shell: bash
         run: |
-          timeout 1m /bin/sh ./start-docker.sh
+          timeout 1m ./start-docker.sh

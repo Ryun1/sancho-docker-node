@@ -10,9 +10,9 @@ jobs:
     steps:
       - name: Check out the repository to the runner
         uses: actions/checkout@v4  
-      - name: Run a script
+      - name: Start node, wait 60s then stop node
         shell: bash
         run: |
-          /bin/bash ./start-docker.sh &
+          /bin/bash ./start-docker.sh 2>&1 | tee script_output.txt &
           sleep 60
           /bin/bash ./stop-docker.sh

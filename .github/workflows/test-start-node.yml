@@ -1,8 +1,6 @@
-name: test start docker
+name: test start node
 
 on:
-  # push:
-  #   branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
@@ -12,5 +10,6 @@ jobs:
     steps:
       - name: Check out the repository to the runner
         uses: actions/checkout@v4  
-      - name: Run a script
-        run: ./start-docker.sh
+      - name: Run a start node script
+        run: |
+          timeout 1m ./start-docker.sh

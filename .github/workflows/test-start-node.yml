@@ -10,6 +10,6 @@ jobs:
     steps:
       - name: Check out the repository to the runner
         uses: actions/checkout@v4  
-      - name: Run a start node script
+      - name: Run a script
         run: |
-          timeout 1m ./start-docker.sh
+          timeout 1m /bin/sh ./start-docker.sh

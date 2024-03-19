@@ -13,4 +13,6 @@ jobs:
       - name: Run a script
         shell: bash
         run: |
-          timeout 1m /bin/bash ./start-docker.sh
+          /bin/bash ./start-docker.sh &
+          sleep 60
+          /bin/bash ./stop-docker.sh

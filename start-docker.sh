@@ -1,4 +1,4 @@
-
+#!/bin/bash
 
 # Set directory locations
 node_dir="./node"

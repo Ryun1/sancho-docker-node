@@ -1,7 +1,7 @@
 
 # SanchoNet docker node 🤠
 
-**Current version:** node `8.9.0`
+**Current version:** node `8.10.0-pre`
 
 A simple dockerized Cardano node setup, for SanchoNet testing.
 

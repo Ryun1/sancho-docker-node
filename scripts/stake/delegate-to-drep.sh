@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # ~~~~~~~~~~~~ CHANGE THIS ~~~~~~~~~~~~
-drep_id="" # keyhash of the drep
+drep_id="3f3d4a84b800b34eb84c6151a955cdd823a0b99e3b886c725b8769e5" # keyhash of the drep
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Delegating to an DRep

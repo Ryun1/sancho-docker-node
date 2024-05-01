@@ -53,13 +53,13 @@ git clone https://github.com/Ryun1/sancho-docker-node.git
 
 Open Visual Studio Code and then go `File > Open Folder` selecting `sancho-docker-node` folder.
 
-![Open Folder VS Code](./.github/setup-2.png)
+![Open Folder VS Code](./docs/images/setup-2.png)
 
 ### 3. Open a terminal in Visual Studio Code.
 
 Open a terminal inside of VSCode.
 
-![Open Terminal Console](./.github/setup-3.png)
+![Open Terminal Console](./docs/images/setup-3.png)
 
 ### 4. Update script permissions.
 
@@ -75,7 +75,7 @@ Run the following command.
 chmod +x ./start-docker.sh ./stop-docker.sh ./scripts/*
 ```
 
-![Fix permissions](./.github/setup-4.png)
+![Fix permissions](./docs/images/setup-4.png)
 
 **Note:** Make sure your terminal shows the correct directory `sancho-docker-node`.
 
@@ -100,7 +100,7 @@ If you want to stop the logs (but the node is still running) you can press `cont
 
 This should look something like:
 
-![Starting node](./.github/usage-start.png)
+![Starting node](./docs/images/usage-start.png)
 
 **Note:** The first time you do this the node will take a long time to synchronize to the network.
 
@@ -110,11 +110,11 @@ This should look something like:
 
 Press the plus at the top right of your terminal window.
 
-![Open new terminal](./.github/usage-check-1.png)
+![Open new terminal](./docs/images/usage-check-1.png)
 
 And then click on the new terminal.
 
-![Navigate to new terminal](./.github/usage-check-1-b.png)
+![Navigate to new terminal](./docs/images/usage-check-1-b.png)
 
 #### 2. Query tip of node.
 
@@ -189,7 +189,7 @@ In a terminal execute:
 
 This will create you a keys directory with some fun things inside, looks like this:
 
-![New keys and addresses](./.github/doing-1.png)
+![New keys and addresses](./docs/images/doing-1.png)
 
 #### 2. Get some tAda.
 

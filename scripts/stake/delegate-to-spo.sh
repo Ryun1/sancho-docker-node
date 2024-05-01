@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # ~~~~~~~~~~~~ CHANGE THIS ~~~~~~~~~~~~
-spo_id="" # keyhash of the SPO
+spo_id="pool104flte3y29dprxcntacsuyznhduvlaza38gvp8yyhy2vvmfenxa" # keyhash of the SPO
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Delegating to an SPO

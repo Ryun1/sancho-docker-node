@@ -8,7 +8,7 @@ alias container-cli="docker exec -ti sancho-node cardano-cli"
 
 container-cli conway governance drep registration-certificate \
  --drep-key-hash $(cat ./keys/drep.id) \
- --key-reg-deposit-amt $(container-cli conway query gov-state --testnet-magic 4 | jq -r .enactState.curPParams.dRepDeposit) \
+ --key-reg-deposit-amt 500000000 \
  --out-file ./txs/drep-register.cert
 
 container-cli conway transaction build \

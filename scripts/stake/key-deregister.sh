@@ -10,7 +10,7 @@ container_cli() {
 
 container_cli conway stake-address deregistration-certificate \
  --stake-verification-key-file ./keys/stake.vkey \
- --key-reg-deposit-amt $(container_cli conway query gov-state --testnet-magic 4 | jq -r .enactState.curPParams.keyDeposit) \
+ --key-reg-deposit-amt $(container_cli conway query gov-state --testnet-magic 4 | jq -r .nextRatifyState.nextcurrentPParams.keyDeposit) \
  --out-file ./txs/stake-deregistration.cert
 
 container_cli conway transaction build \

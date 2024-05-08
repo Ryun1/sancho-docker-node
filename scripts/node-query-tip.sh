@@ -6,4 +6,5 @@ container_cli() {
 }
 
 # Query the tip of the blockchain as observed by the node
-container_cli query tip --testnet-magic 4
+container_cli query tip \
+  --testnet-magic 4

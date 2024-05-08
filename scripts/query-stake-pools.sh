@@ -1,4 +1,10 @@
 #!/bin/sh
 
+# Function to execute cardano-cli commands inside the container
+container_cli() {
+  docker exec -ti sancho-node cardano-cli "$@"
+}
+
 # Query the stake pools
-docker exec -ti sancho-node cardano-cli query stake-pools --testnet-magic 4
+container_cli query stake-pools \
+    --testnet-magic 4

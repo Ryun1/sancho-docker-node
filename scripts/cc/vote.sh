@@ -1,18 +1,32 @@
 #!/bin/sh
 
-# ~~~~~~~~~~~~ CHANGE THIS ~~~~~~~~~~~~
-choice="yes" # "yes", "no" or "abstain"
-ga_hash="e0ba9c084a61d937b37db627c4b740697e3e0ca8a6cca3ca21bbe313034e774b"
-ga_index="0"
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-# Voting on a governance action
-echo "Voting on $ga_hash#$ga_index with a $choice."
-
 # Function to execute cardano-cli commands inside the container
 container_cli() {
   docker exec -ti sancho-node cardano-cli "$@"
 }
+
+# Function to display script usage
+usage() {
+  echo "Usage: $0 <choice> <ga_id>"
+  echo "Example: $0 yes 66cbbf693a8549d0abb1b5219f1127f8176a4052ef774c11a52ff18ad1845102#0"
+}
+
+# Check if the correct number of arguments is provided
+if [ "$#" -ne 2 ]; then
+  usage
+  exit 1
+fi
+
+# Assigning parameters to variables
+choice="$1"
+ga_id="$2"
+
+# Extract ga_hash and ga_index from ga_id
+ga_hash=$(echo "$ga_id" | cut -d '#' -f 1)
+ga_index=$(echo "$ga_id" | cut -d '#' -f 2)
+
+# Voting on a governance action
+echo "Voting on $ga_id with a $choice."
 
 container_cli conway governance vote create \
     "--$choice" \

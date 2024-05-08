@@ -9,8 +9,8 @@ container_cli() {
 }
 
 container_cli conway governance drep registration-certificate \
- --drep-key-hash $(cat ./keys/drep.id) \
- --key-reg-deposit-amt $(container_cli conway query gov-state --testnet-magic 4 | jq -r .nextRatifyState.nextcurrentPParams.dRepDeposit) \
+ --drep-key-hash "$(cat ./keys/drep.id)" \
+ --key-reg-deposit-amt "$(container_cli conway query gov-state --testnet-magic 4 | jq -r .currentPParams.dRepDeposit)" \
  --out-file ./txs/drep-register.cert
 
 container_cli conway transaction build \

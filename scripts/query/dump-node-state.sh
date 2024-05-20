@@ -35,7 +35,13 @@ container_cli conway query gov-state \
     --testnet-magic 4 | jq -r '.proposals' > ./dumps/governance-actions.json
 
 # Dumping ledger state
-echo "Dumping protocol state."
+# echo "Dumping protocol state."
 
-container_cli conway query protocol-state \
-    --testnet-magic 4 > ./dumps/protocol-state.json
+# container_cli conway query protocol-state \
+#     --testnet-magic 4 > ./dumps/protocol-state.json
+
+# Dumping out CC state
+echo "Dumping CC state."
+
+container_cli conway query committee-state \
+    --testnet-magic 4 > ./dumps/committee.json

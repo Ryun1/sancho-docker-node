@@ -18,4 +18,6 @@ This transaction needs to be signed by the keys included within the minting poli
 
 3. `./check-orchestrator-utxos.sh`
 
-This gives an output to console showing the UTxOs controlled by the orchestrator address
+This gives an output to console showing the UTxOs controlled by the orchestrator address.
+This can be used to check weather step 2. executed correctly.
+The NFTs should be seen in the orchestrator's UTxOs, these can be identified via their policies.

@@ -8,6 +8,10 @@ prev_ga_index="0"
 # Building, signing and submitting an parameter change governance action
 echo "Creating and submitting parameter change governace action."
 
+echo "Pull the latest guardrails script."
+
+curl --silent -J -L https://book.world.dev.cardano.org/environments/mainnet/guardrails-script.plutus -o ./txs/guardrails-script.plutus
+
 # Function to execute cardano-cli commands inside the container
 container_cli() {
   docker exec -ti sancho-node cardano-cli "$@"

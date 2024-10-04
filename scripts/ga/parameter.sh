@@ -3,14 +3,20 @@
 # ~~~~~~~~~~~~ CHANGE THIS ~~~~~~~~~~~~
 prev_ga_hash=""
 prev_ga_index="0"
+
+METADATA_URL="https://buy-ryan-an-island.com"
+METADATA_HASH="0000000000000000000000000000000000000000000000000000000000000000"
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Building, signing and submitting an parameter change governance action
 echo "Creating and submitting parameter change governace action."
 
-echo "Pull the latest guardrails script."
-
+echo "\nPull the latest guardrails script."
 curl --silent -J -L https://book.world.dev.cardano.org/environments/mainnet/guardrails-script.plutus -o ./txs/guardrails-script.plutus
+
+echo "\nGet the guardrails script hash from the genesis file."
+SCRIPT_HASH=$(jq -r ".constitution.script" "./node/config/conway-genesis.json")
+echo "Script hash: $SCRIPT_HASH"
 
 # Function to execute cardano-cli commands inside the container
 container_cli() {
@@ -21,9 +27,9 @@ container_cli conway governance action create-protocol-parameters-update \
   --testnet \
   --governance-action-deposit $(container_cli conway query gov-state --testnet-magic 4 | jq -r '.currentPParams.govActionDeposit') \
   --deposit-return-stake-verification-key-file ./keys/stake.vkey \
-  --anchor-url  https://buy-ryan-an-island.com \
-  --anchor-data-hash 0000000000000000000000000000000000000000000000000000000000000000 \
-  --constitution-script-hash "fa24fb305126805cf2164c161d852a0e7330cf988f1fe558cf7d4a64" \
+  --anchor-url "$METADATA_URL" \
+  --anchor-data-hash "$METADATA_HASH" \
+  --constitution-script-hash "$SCRIPT_HASH" \
   --key-reg-deposit-amt 3000000 \
   --out-file ./txs/parameter.action
 

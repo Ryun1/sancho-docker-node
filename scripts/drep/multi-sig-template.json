@@ -1,0 +1,17 @@
+{
+    "type": "any",
+    "scripts": [
+      {
+        "type": "sig",
+        "keyHash": "e6d27c194fd18f39e080073e5ea02aa78abe4b6c84d78a498302461c"
+      },
+      {
+        "type": "sig",
+        "keyHash": "5ab00e8cd1142fcffc5f7a2c2e3549874afd89e26995d7686c2714d4"
+      },
+      {
+        "type": "sig",
+        "keyHash": "db5a8cbb0df0359c36541727229993b21371f834202733c9bbabc1fd"
+      }
+    ]
+}

@@ -9,25 +9,25 @@ container_cli() {
 }
 
 # Iterate through the template and add payment, stake and DRep keys to it
-cp ./scripts/drep/multi-sig-template.json ./txs/multisig-drep.json
+# cp ./scripts/drep/multi-sig-template.json ./txs/multisig-drep.json
 
-# Capture the keyHash values and ensure no newline characters
-newHash1=$(container_cli address key-hash --payment-verification-key-file "./keys/payment.vkey" | tr -d '\n')
-newHash2=$(container_cli address key-hash --payment-verification-key-file "./keys/payment.vkey" | tr -d '\n')
-newHash3=$(container_cli address key-hash --payment-verification-key-file "./keys/payment.vkey" | tr -d '\n')
+# # Capture the keyHash values and ensure no newline characters
+# newHash1=$(container_cli address key-hash --payment-verification-key-file "./keys/payment.vkey" | tr -d '\n')
+# newHash2=$(container_cli address key-hash --payment-verification-key-file "./keys/payment.vkey" | tr -d '\n')
+# newHash3=$(container_cli address key-hash --payment-verification-key-file "./keys/payment.vkey" | tr -d '\n')
 
-# Use the captured values in jq
-updated_json=$(jq --arg newHash1 "$newHash1" \
-                  --arg newHash2 "$newHash2" \
-                  --arg newHash3 "$newHash3" \
-                  '.scripts[0].keyHash = $newHash1 | 
-                   .scripts[1].keyHash = $newHash2 | 
-                   .scripts[2].keyHash = $newHash3' "./txs/multisig-drep.json")
+# # Use the captured values in jq
+# updated_json=$(jq --arg newHash1 "$newHash1" \
+#                   --arg newHash2 "$newHash2" \
+#                   --arg newHash3 "$newHash3" \
+#                   '.scripts[0].keyHash = $newHash1 | 
+#                    .scripts[1].keyHash = $newHash2 | 
+#                    .scripts[2].keyHash = $newHash3' "./txs/multisig-drep.json")
 
-# Write the updated JSON to file
-echo "$updated_json" > "./txs/multisig-drep.json"
+# # Write the updated JSON to file
+# echo "$updated_json" > "./txs/multisig-drep.json"
 
-container_cli conway governance hash script \
+container_cli hash script \
   --script-file ./txs/multisig-drep.json \
   --out-file ./txs/multisig-drep.id
 
@@ -51,7 +51,7 @@ container_cli conway transaction witness \
   --signing-key-file ./keys/payment.skey \
   --out-file ./txs/reg-drep-multisig-register.witness
 
-cardano-cli transaction assemble \
+container_cli transaction assemble \
   --tx-body-file ./txs/reg-drep-multisig-register.unsigned \
   --witness-file ./txs/reg-drep-multisig-register.witness \
   --out-file ./txs/reg-drep-multisig-register.signed

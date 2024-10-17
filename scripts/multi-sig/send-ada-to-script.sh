@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # ~~~~~~~~~~~~ CHANGE THIS ~~~~~~~~~~~~
-ADA_AMOUNT=100000000000
+LOVELACE_AMOUNT=10000000
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Function to execute cardano-cli commands inside the container
@@ -10,12 +10,12 @@ container_cli() {
 }
 
 # Send ada to the multisig payment script
-echo "Sending $ADA_AMOUNT ada to the multisig payment address."
+echo "Sending $LOVELACE_AMOUNT lovelace to the multisig payment address."
 
 container_cli conway transaction build \
  --testnet-magic 4 \
  --tx-in $(container_cli query utxo --address $(cat ./keys/payment.addr) --testnet-magic 4 --out-file  /dev/stdout | jq -r 'keys[0]') \
- --tx-out $(cat ./keys/multi-sig/script.addr)+$ADA_AMOUNT \
+ --tx-out $(cat ./keys/multi-sig/script.addr)+$LOVELACE_AMOUNT \
  --change-address $(cat ./keys/payment.addr) \
  --out-file ./txs/multi-sig/send-ada-to-script.unsigned
 

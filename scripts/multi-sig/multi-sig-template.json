@@ -1,18 +1,23 @@
 {
   "type": "all",
-  "atLeast": 2,
   "scripts": [
     {
       "type": "sig",
-      "keyHash": ""
+      "keyHash": "db5cbf5858c14a344dade4b1a76204493bc13e58aa83fc74a23468f9"
     },
     {
-      "type": "sig",
-      "keyHash": ""
-    },
-    {
-      "type": "sig",
-      "keyHash": ""
+      "type": "atLeast",
+      "required": 2,
+      "scripts": [
+        {
+          "type": "sig",
+          "keyHash": "db5cbf5858c14a344dade4b1a76204493bc13e58aa83fc74a23468f9"
+        },
+        {
+          "type": "sig",
+          "keyHash": "db5cbf5858c14a344dade4b1a76204493bc13e58aa83fc74a23468f9"
+        }
+      ]
     }
   ]
 }

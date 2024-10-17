@@ -7,7 +7,7 @@
     },
     {
       "type": "atLeast",
-      "required": 2,
+      "required": 1,
       "scripts": [
         {
           "type": "sig",

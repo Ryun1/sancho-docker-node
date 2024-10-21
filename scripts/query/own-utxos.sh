@@ -15,7 +15,7 @@ container_cli() {
 echo "Querying UTXOs for your address: $(cat ./keys/payment.addr)"
 
 # Query the UTxOs controlled by the payment address
-container_cli query utxo \
+container_cli conway query utxo \
   --address "$(cat ./keys/payment.addr)" \
   --testnet-magic 4 \
   --out-file  /dev/stdout

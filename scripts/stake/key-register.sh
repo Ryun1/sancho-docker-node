@@ -10,24 +10,24 @@ container_cli() {
 
 container_cli conway stake-address registration-certificate \
  --stake-verification-key-file ./keys/stake.vkey \
- --key-reg-deposit-amt $(container_cli conway query gov-state --testnet-magic 4 | jq -r .currentPParams.keyDeposit) \
+ --key-reg-deposit-amt 2000000 \
  --out-file ./txs/stake-registration.cert
 
 container_cli conway transaction build \
  --testnet-magic 4 \
  --witness-override 2 \
- --tx-in $(container_cli query utxo --address $(cat ./keys/payment.addr) --testnet-magic 4 --out-file  /dev/stdout | jq -r 'keys[0]') \
+ --tx-in $(container_cli conway query utxo --address $(cat ./keys/payment.addr) --testnet-magic 4 --out-file  /dev/stdout | jq -r 'keys[1]') \
  --change-address $(cat ./keys/payment.addr) \
  --certificate-file ./txs/stake-registration.cert \
  --out-file ./txs/stake-registration-tx.raw
 
-container_cli transaction sign \
+container_cli conway transaction sign \
  --tx-body-file ./txs/stake-registration-tx.raw \
  --signing-key-file ./keys/payment.skey \
  --signing-key-file ./keys/stake.skey \
  --testnet-magic 4 \
  --out-file ./txs/stake-registration-tx.signed
 
-container_cli transaction submit \
+container_cli conway transaction submit \
  --testnet-magic 4 \
  --tx-file ./txs/stake-registration-tx.signed

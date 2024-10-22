@@ -6,5 +6,5 @@ container_cli() {
 }
 
 # Query the tip of the blockchain as observed by the node
-container_cli query tip \
+container_cli conway query tip \
   --testnet-magic 4

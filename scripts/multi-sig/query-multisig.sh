@@ -8,7 +8,7 @@ container_cli() {
 echo "Querying UTXOs for your multisig script address: $(cat ./keys/multi-sig/script.addr)"
 
 # Query the UTxOs controlled by multisig script address
-container_cli query utxo \
+container_cli conway query utxo \
   --address "$(cat ./keys/multi-sig/script.addr)" \
   --testnet-magic 4 \
   --out-file  /dev/stdout

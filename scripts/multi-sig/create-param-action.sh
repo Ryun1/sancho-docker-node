@@ -38,10 +38,10 @@ container_cli conway governance action create-protocol-parameters-update \
 
 container_cli conway transaction build \
  --testnet-magic 4 \
- --tx-in "$(container_cli query utxo --address "$(cat ./keys/multi-sig/script.addr)" --testnet-magic 4 --out-file /dev/stdout | jq -r 'keys[0]')" \
+ --tx-in "$(container_cli conway query utxo --address "$(cat ./keys/multi-sig/script.addr)" --testnet-magic 4 --out-file /dev/stdout | jq -r 'keys[0]')" \
  --tx-in-script-file ./keys/multi-sig/script.json \
- --tx-in "$(container_cli query utxo --address "$(cat ./keys/payment.addr)" --testnet-magic 4 --out-file /dev/stdout | jq -r 'keys[0]')" \
- --tx-in-collateral "$(container_cli query utxo --address "$(cat ./keys/payment.addr)" --testnet-magic 4 --out-file /dev/stdout | jq -r 'keys[0]')" \
+ --tx-in "$(container_cli conway query utxo --address "$(cat ./keys/payment.addr)" --testnet-magic 4 --out-file /dev/stdout | jq -r 'keys[0]')" \
+ --tx-in-collateral "$(container_cli conway query utxo --address "$(cat ./keys/payment.addr)" --testnet-magic 4 --out-file /dev/stdout | jq -r 'keys[0]')" \
  --change-address "$(cat ./keys/payment.addr)" \
  --proposal-file ./txs/multi-sig/parameter.action \
  --proposal-script-file ./txs/guardrails-script.plutus \

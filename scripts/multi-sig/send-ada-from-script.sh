@@ -14,7 +14,7 @@ echo "Sending $LOVELACE_AMOUNT lovelace to the payment address from the script."
 
 container_cli conway transaction build \
  --testnet-magic 4 \
- --tx-in $(container_cli query utxo --address $(cat ./keys/multi-sig/script.addr) --testnet-magic 4 --out-file  /dev/stdout | jq -r 'keys[0]') \
+ --tx-in $(container_cli conway query utxo --address $(cat ./keys/multi-sig/script.addr) --testnet-magic 4 --out-file  /dev/stdout | jq -r 'keys[0]') \
  --tx-in-script-file ./keys/multi-sig/script.json \
  --tx-out $(cat ./keys/payment.addr)+$LOVELACE_AMOUNT \
  --change-address $(cat ./keys/multi-sig/script.addr) \

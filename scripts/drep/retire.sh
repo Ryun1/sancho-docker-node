@@ -16,7 +16,7 @@ container_cli conway governance drep retirement-certificate \
 container_cli conway transaction build \
  --testnet-magic 4 \
  --witness-override 2 \
- --tx-in $(container_cli query utxo --address $(cat ./keys/payment.addr) --testnet-magic 4 --out-file  /dev/stdout | jq -r 'keys[0]') \
+ --tx-in $(container_cli conway query utxo --address $(cat ./keys/payment.addr) --testnet-magic 4 --out-file  /dev/stdout | jq -r 'keys[0]') \
  --change-address $(cat ./keys/payment.addr) \
  --certificate-file ./txs/drep-retire.cert \
  --out-file ./txs/drep-retire-tx.raw

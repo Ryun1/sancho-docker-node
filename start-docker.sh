@@ -7,7 +7,7 @@ db_dir="$node_dir/db"
 ipc_dir="$node_dir/ipc"
 
 # Base URL for node config files
-config_base_url="https://book.world.dev.cardano.org/environments/sanchonet/"
+config_base_url="https://book.play.dev.cardano.org/environments/sanchonet/"
 
 # Pull the latest node config files, put them inside the node/config directory
 

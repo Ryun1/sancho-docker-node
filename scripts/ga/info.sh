@@ -2,8 +2,8 @@
 
 # ~~~~~~~~~~~~ CHANGE THIS ~~~~~~~~~~~~
 
-METADATA_URL="https://raw.githubusercontent.com/Ryun1/metadata/refs/heads/main/test-ga-2.jsonld"
-METADATA_HASH="a8dfd5d606424edf56bba038f227777fd1fb7651baa5007fee32e62430a289e8"
+METADATA_URL="https://raw.githubusercontent.com/IntersectMBO/governance-actions/refs/heads/main/mainnet/2024-11-19-infohf/metadata.jsonld"
+METADATA_HASH="93106d082a93e94df5aff74f678438bae3a647dac63465fbfcde6a3058f41a1e"
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

@@ -4,13 +4,13 @@
 PREV_GA_TX_HASH=""
 PREV_GA_INDEX="0"
 
-NEW_CONSTITUTION_ANCHOR_URL="ipfs://new-constitution.txt"
-NEW_CONSTITUTION_ANCHOR_HASH="ab901c3aeeca631ee5c70147a558fbf191a4af245d8ca001e845d8569d7c38f9"
+NEW_CONSTITUTION_ANCHOR_URL="ipfs://QmbiATXEFuuAktbjLJJPiRyZowAgqqM3hfZoNFNmMCygjb"
+NEW_CONSTITUTION_ANCHOR_HASH="2a61e2f4b63442978140c77a70daab3961b22b12b63b13949a390c097214d1c5"
 
 NEW_CONSTITUTION_SCRIPT_HASH="fa24fb305126805cf2164c161d852a0e7330cf988f1fe558cf7d4a64"
 
-METADATA_URL="https://raw.githubusercontent.com/Ryun1/metadata/refs/heads/main/new-const-2"
-METADATA_HASH="01318fd6815453f35a4daac80cbbe3bf46c35dc070eb7dc817f26dfee5042eb8"
+METADATA_URL="https://raw.githubusercontent.com/IntersectMBO/governance-actions/refs/heads/main/preview/2024-12-19-conts/metadata.jsonld"
+METADATA_HASH="4b2649556c838497ee2923bdff0f05b48fb2f0c3c5cceb450200f8bd6868ac5b"
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Building, signing and submitting an new-constitution change governance action

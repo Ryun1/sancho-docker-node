@@ -14,7 +14,7 @@ METADATA_HASH="01318fd6815453f35a4daac80cbbe3bf46c35dc070eb7dc817f26dfee5042eb8"
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Building, signing and submitting an new-committee change governance action
-echo "Creating and submitting new-committee governace action."
+echo "Creating and submitting new-committee governance action."
 
 # Function to execute cardano-cli commands inside the container
 container_cli() {

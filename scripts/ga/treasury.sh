@@ -11,7 +11,7 @@ METADATA_HASH="633e6f25fea857662d1542921f1fa2cab5f90a9e4cb51bdae8946f823e403ea8"
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Building, signing and submitting an treasury governance action
-echo "Creating and submitting treasury withdrawal governace action."
+echo "Creating and submitting treasury withdrawal governance action."
 
 echo "\nPull the latest guardrails script."
 curl --silent -J -L https://book.world.dev.cardano.org/environments/mainnet/guardrails-script.plutus -o ./txs/guardrails-script.plutus

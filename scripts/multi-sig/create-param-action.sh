@@ -19,7 +19,7 @@ SCRIPT_HASH=$(container_cli hash script --script-file ./txs/guardrails-script.pl
 echo "Script hash: $SCRIPT_HASH"
 
 # Building, signing and submitting an parameter update governance action
-echo "Creating and submitting protocol param update governace action, using the multi-sig's ada."
+echo "Creating and submitting protocol param update governance action, using the multi-sig's ada."
 
 # Function to execute cardano-cli commands inside the container
 container_cli() {

@@ -6,7 +6,7 @@ METADATA_HASH="0000000000000000000000000000000000000000000000000000000000000000"
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Building, signing and submitting an info governance action
-echo "Creating and submitting info governace action, using the multi-sig's ada."
+echo "Creating and submitting info governance action, using the multi-sig's ada."
 
 # Function to execute cardano-cli commands inside the container
 container_cli() {

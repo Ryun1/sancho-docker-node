@@ -9,7 +9,7 @@ METADATA_HASH="3e6b1083a637a740d5b84bb6edf1a5119b81440b31ea84907311b6543ebd39eb"
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Building, signing and submitting an parameter change governance action
-echo "Creating and submitting parameter change governace action."
+echo "Creating and submitting parameter change governance action."
 
 echo "\nPull the latest guardrails script."
 curl --silent -J -L https://book.world.dev.cardano.org/environments/mainnet/guardrails-script.plutus -o ./txs/guardrails-script.plutus

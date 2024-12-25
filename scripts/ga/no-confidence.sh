@@ -9,7 +9,7 @@ METADATA_HASH="ab901c3aeeca631ee5c70147a558fbf191a4af245d8ca001e845d8569d7c38f9"
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Building, signing and submitting an no-confidence change governance action
-echo "Creating and submitting no-confidence governace action."
+echo "Creating and submitting no-confidence governance action."
 
 # Function to execute cardano-cli commands inside the container
 container_cli() {

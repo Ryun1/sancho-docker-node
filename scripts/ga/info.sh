@@ -8,7 +8,7 @@ METADATA_HASH="93106d082a93e94df5aff74f678438bae3a647dac63465fbfcde6a3058f41a1e"
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Building, signing and submitting an info governance action
-echo "Creating and submitting info governace action."
+echo "Creating and submitting info governance action."
 
 # Function to execute cardano-cli commands inside the container
 container_cli() {

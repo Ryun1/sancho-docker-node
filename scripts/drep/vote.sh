@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Define directories
+keys_dir="./keys"
+txs_dir="./txs/drep"
+
 # Function to execute cardano-cli commands inside the container
 container_cli() {
   docker exec -ti sancho-node cardano-cli "$@"
@@ -29,24 +33,25 @@ ga_index=$(echo "$ga_id" | cut -d '#' -f 2)
 echo "Voting on $ga_id with a $choice."
 
 container_cli conway governance vote create \
-    "--$choice" \
-    --governance-action-tx-id "$ga_hash" \
-    --governance-action-index "$ga_index" \
-    --drep-verification-key-file ./keys/drep.vkey \
-    --out-file ./txs/ga.vote
+  "--$choice" \
+  --governance-action-tx-id "$ga_hash" \
+  --governance-action-index "$ga_index" \
+  --drep-verification-key-file $keys_dir/drep.vkey \
+  --out-file $txs_dir/ga.vote
 
-container_cli conway transaction build --testnet-magic 4 \
-    --tx-in "$(container_cli conway query utxo --address "$(cat ./keys/payment.addr)" --testnet-magic 4 --out-file /dev/stdout | jq -r 'keys[0]')" \
-    --change-address "$(cat ./keys/payment.addr)" \
-    --vote-file ./txs/ga.vote \
-    --witness-override 2 \
-    --out-file ./txs/vote-tx.unsigned
+container_cli conway transaction build \
+  --testnet-magic 4 \
+  --tx-in "$(container_cli conway query utxo --address "$(cat $keys_dir/payment.addr)" --testnet-magic 4 --out-file /dev/stdout | jq -r 'keys[0]')" \
+  --change-address "$(cat $keys_dir/payment.addr)" \
+  --vote-file $txs_dir/ga.vote \
+  --witness-override 2 \
+  --out-file $txs_dir/vote-tx.unsigned
 
 container_cli transaction sign \
-    --tx-body-file ./txs/vote-tx.unsigned \
-    --signing-key-file ./keys/drep.skey \
-    --signing-key-file ./keys/payment.skey \
-    --testnet-magic 4 \
-    --out-file ./txs/vote-tx.signed
+  --tx-body-file $txs_dir/vote-tx.unsigned \
+  --signing-key-file $keys_dir/drep.skey \
+  --signing-key-file $keys_dir/payment.skey \
+  --testnet-magic 4 \
+  --out-file $txs_dir/vote-tx.signed
 
-container_cli transaction submit --testnet-magic 4 --tx-file ./txs/vote-tx.signed
+container_cli transaction submit --testnet-magic 4 --tx-file $txs_dir/vote-tx.signed

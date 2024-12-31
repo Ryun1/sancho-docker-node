@@ -13,45 +13,47 @@ METADATA_URL="https://raw.githubusercontent.com/IntersectMBO/governance-actions/
 METADATA_HASH="4b2649556c838497ee2923bdff0f05b48fb2f0c3c5cceb450200f8bd6868ac5b"
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-# Building, signing and submitting an new-constitution change governance action
-echo "Creating and submitting new-constitution governance action."
+# Define directories
+keys_dir="./keys"
+txs_dir="./txs/ga"
 
 # Function to execute cardano-cli commands inside the container
 container_cli() {
   docker exec -ti sancho-node cardano-cli "$@"
 }
 
+# Building, signing and submitting an new-constitution change governance action
+echo "Creating and submitting new-constitution governance action."
+
 container_cli conway governance action create-constitution \
   --testnet \
   --governance-action-deposit $(container_cli conway query gov-state --testnet-magic 4 | jq -r '.currentPParams.govActionDeposit') \
-  --deposit-return-stake-verification-key-file ./keys/stake.vkey \
+  --deposit-return-stake-verification-key-file ./$keys_dir/stake.vkey \
   --anchor-url "$METADATA_URL" \
   --anchor-data-hash "$METADATA_HASH" \
   --constitution-url "$NEW_CONSTITUTION_ANCHOR_URL" \
   --constitution-hash "$NEW_CONSTITUTION_ANCHOR_HASH" \
   --constitution-script-hash "$NEW_CONSTITUTION_SCRIPT_HASH" \
-  --out-file ./txs/new-constitution.action
+  --out-file ./$txs_dir/new-constitution.action
 
   # --prev-governance-action-tx-id "$PREV_GA_TX_HASH" \
   # --prev-governance-action-index "$PREV_GA_INDEX" \
 
-echo "Building the transaction."
-
 container_cli conway transaction build \
  --testnet-magic 4 \
- --tx-in "$(container_cli conway query utxo --address "$(cat ./keys/payment.addr)" --testnet-magic 4 --out-file /dev/stdout | jq -r 'keys[0]')" \
- --tx-in "$(container_cli conway query utxo --address "$(cat ./keys/payment.addr)" --testnet-magic 4 --out-file /dev/stdout | jq -r 'keys[1]')" \
- --tx-in-collateral "$(container_cli conway query utxo --address "$(cat ./keys/payment.addr)" --testnet-magic 4 --out-file /dev/stdout | jq -r 'keys[1]')" \
- --proposal-file ./txs/new-constitution.action \
- --change-address "$(cat ./keys/payment.addr)" \
- --out-file ./txs/new-constitution-action-tx.unsigned
+ --tx-in "$(container_cli conway query utxo --address "$(cat ./$keys_dir/payment.addr)" --testnet-magic 4 --out-file /dev/stdout | jq -r 'keys[0]')" \
+ --tx-in "$(container_cli conway query utxo --address "$(cat ./$keys_dir/payment.addr)" --testnet-magic 4 --out-file /dev/stdout | jq -r 'keys[1]')" \
+ --tx-in-collateral "$(container_cli conway query utxo --address "$(cat ./$keys_dir/payment.addr)" --testnet-magic 4 --out-file /dev/stdout | jq -r 'keys[1]')" \
+ --proposal-file ./$txs_dir/new-constitution.action \
+ --change-address "$(cat ./$keys_dir/payment.addr)" \
+ --out-file ./$txs_dir/new-constitution-action-tx.unsigned
 
 container_cli conway transaction sign \
- --tx-body-file ./txs/new-constitution-action-tx.unsigned \
- --signing-key-file ./keys/payment.skey \
+ --tx-body-file ./$txs_dir/new-constitution-action-tx.unsigned \
+ --signing-key-file ./$keys_dir/payment.skey \
  --testnet-magic 4 \
- --out-file ./txs/new-constitution-action-tx.signed
+ --out-file ./$txs_dir/new-constitution-action-tx.signed
 
 container_cli conway transaction submit \
  --testnet-magic 4 \
- --tx-file ./txs/new-constitution-action-tx.signed
+ --tx-file ./$txs_dir/new-constitution-action-tx.signed

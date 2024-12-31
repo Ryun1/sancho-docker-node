@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# Define directories
+keys_dir="./keys"
+txs_dir="./txs/cc"
+
 # Function to execute cardano-cli commands inside the container
 container_cli() {
   docker exec -ti sancho-node cardano-cli "$@"
@@ -28,26 +32,32 @@ ga_index=$(echo "$ga_id" | cut -d '#' -f 2)
 # Voting on a governance action
 echo "Voting on $ga_id with a $choice."
 
+# Create vote
 container_cli conway governance vote create \
-    "--$choice" \
-    --governance-action-tx-id $ga_hash \
-    --governance-action-index $ga_index \
-    --cc-hot-verification-key-file ./keys/cc-hot.vkey \
-    --out-file ./txs/ga.vote
+  "--$choice" \
+  --governance-action-tx-id "$ga_hash" \
+  --governance-action-index "$ga_index" \
+  --cc-hot-verification-key-file "$keys_dir/cc-hot.vkey" \
+  --out-file "$txs_dir/ga.vote"
 
-container_cli conway transaction build --testnet-magic 4 \
-    --tx-in "$(container_cli conway query utxo --address $(cat ./keys/payment.addr) --testnet-magic 4 --out-file /dev/stdout | jq -r 'keys[0]')" \
-    --change-address $(cat ./keys/payment.addr) \
-    --vote-file ./txs/ga.vote \
-    --witness-override 2 \
-    --out-file ./txs/vote-tx.raw
+# Build transaction
+container_cli conway transaction build \
+  --testnet-magic 4 \
+  --tx-in "$(container_cli conway query utxo --address $(cat "$keys_dir/payment.addr") --testnet-magic 4 --out-file /dev/stdout | jq -r 'keys[0]')" \
+  --change-address "$(cat "$keys_dir/payment.addr")" \
+  --vote-file "$txs_dir/ga.vote" \
+  --witness-override 2 \
+  --out-file "$txs_dir/vote-tx.raw"
 
+# Sign transaction
 container_cli transaction sign \
-    --tx-body-file ./txs/vote-tx.raw \
-    --signing-key-file ./keys/payment.skey \
-    --signing-key-file ./keys/cc-hot.skey \
-    --testnet-magic 4 \
-    --out-file ./txs/vote-tx.signed
+  --tx-body-file "$txs_dir/vote-tx.raw" \
+  --signing-key-file "$keys_dir/payment.skey" \
+  --signing-key-file "$keys_dir/cc-hot.skey" \
+  --testnet-magic 4 \
+  --out-file "$txs_dir/vote-tx.signed"
 
-container_cli transaction submit --testnet-magic 4 \
-    --tx-file ./txs/vote-tx.signed
+# Submit transaction
+container_cli transaction submit \
+  --testnet-magic 4 \
+  --tx-file "$txs_dir/vote-tx.signed"

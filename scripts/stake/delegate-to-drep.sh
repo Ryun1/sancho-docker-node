@@ -23,10 +23,10 @@ container_cli conway transaction build \
  --tx-in $(container_cli conway query utxo --address $(cat ./keys/payment.addr) --testnet-magic 4 --out-file  /dev/stdout | jq -r 'keys[0]') \
  --change-address $(cat ./keys/payment.addr) \
  --certificate-file ./txs/vote-deleg-key-hash.cert \
- --out-file ./txs/vote-deleg-tx.raw
+ --out-file ./txs/vote-deleg-tx.unsigned
 
 container_cli conway transaction sign \
- --tx-body-file ./txs/vote-deleg-tx.raw \
+ --tx-body-file ./txs/vote-deleg-tx.unsigned \
  --signing-key-file ./keys/payment.skey \
  --signing-key-file ./keys/stake.skey \
  --testnet-magic 4 \

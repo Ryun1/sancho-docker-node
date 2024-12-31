@@ -40,10 +40,10 @@ container_cli conway transaction build --testnet-magic 4 \
     --change-address "$(cat ./keys/payment.addr)" \
     --vote-file ./txs/ga.vote \
     --witness-override 2 \
-    --out-file ./txs/vote-tx.raw
+    --out-file ./txs/vote-tx.unsigned
 
 container_cli transaction sign \
-    --tx-body-file ./txs/vote-tx.raw \
+    --tx-body-file ./txs/vote-tx.unsigned \
     --signing-key-file ./keys/drep.skey \
     --signing-key-file ./keys/payment.skey \
     --testnet-magic 4 \

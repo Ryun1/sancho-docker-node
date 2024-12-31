@@ -1,7 +1,10 @@
 #!/bin/sh
 
+# Define the keys directory
+keys_dir="./keys"
+
 # Check if keys already exist
-if [ -f "./keys/drep.id" ]; then
+if [ -f "$keys_dir/drep.id" ]; then
     echo "Keys already generated."
     echo "Exiting."
     exit 0
@@ -18,33 +21,33 @@ container_cli() {
 
 # Generate payment keys
 container_cli address key-gen \
- --verification-key-file keys/payment.vkey \
- --signing-key-file keys/payment.skey
+ --verification-key-file "$keys_dir/payment.vkey" \
+ --signing-key-file "$keys_dir/payment.skey"
 
 # Generate stake keys
 container_cli stake-address key-gen \
- --verification-key-file keys/stake.vkey \
- --signing-key-file keys/stake.skey \
+ --verification-key-file "$keys_dir/stake.vkey" \
+ --signing-key-file "$keys_dir/stake.skey"
 
 # Generate DRep keys
 container_cli conway governance drep key-gen \
- --verification-key-file keys/drep.vkey \
- --signing-key-file keys/drep.skey \
+ --verification-key-file "$keys_dir/drep.vkey" \
+ --signing-key-file "$keys_dir/drep.skey"
 
 # Generate DRep ID
 container_cli conway governance drep id \
- --drep-verification-key-file keys/drep.vkey \
- --out-file keys/drep.id
+ --drep-verification-key-file "$keys_dir/drep.vkey" \
+ --out-file "$keys_dir/drep.id"
 
 # Get payment address from keys
 container_cli address build \
- --payment-verification-key-file keys/payment.vkey \
- --stake-verification-key-file keys/stake.vkey \
- --out-file keys/payment.addr \
+ --payment-verification-key-file "$keys_dir/payment.vkey" \
+ --stake-verification-key-file "$keys_dir/stake.vkey" \
+ --out-file "$keys_dir/payment.addr" \
  --testnet-magic 4
 
- # Derive stake address from stake keys
+# Derive stake address from stake keys
 container_cli stake-address build \
- --stake-verification-key-file keys/stake.vkey \
- --out-file keys/stake.addr \
+ --stake-verification-key-file "$keys_dir/stake.vkey" \
+ --out-file "$keys_dir/stake.addr" \
  --testnet-magic 4

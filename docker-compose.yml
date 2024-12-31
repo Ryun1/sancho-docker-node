@@ -1,15 +1,15 @@
 version: "3.5"
 
 services:
-  sancho-node:
-    container_name: sancho-node
+  cardano-node:
+    container_name: node-${NETWORK}-container
     network_mode: "host"
     build: ./
     restart: always
     volumes:
-      - ./node/db:/data/db
-      - ./node/config:/config
-      - ./node/ipc:/ipc
+      - ./node-${NETWORK}/db:/data/db
+      - ./node-${NETWORK}/config:/config
+      - ./node-${NETWORK}/ipc:/ipc
       - ./keys:/keys
       - ./txs:/txs
       - ./dumps:/dumps

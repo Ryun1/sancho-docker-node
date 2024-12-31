@@ -2,7 +2,7 @@
 
 # Define directories
 keys_dir="./keys"
-txs_dir="./txs"
+txs_dir="./txs/drep"
 
 # Function to execute cardano-cli commands inside the container
 container_cli() {

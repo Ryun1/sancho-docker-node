@@ -8,13 +8,17 @@ METADATA_URL="https://raw.githubusercontent.com/IntersectMBO/governance-actions/
 METADATA_HASH="8a1bd37caa6b914a8b569adb63a0f41d8f159c110dc5c8409118a3f087fffb43"
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-# Building, signing and submitting an hardfork change governance action
-echo "Creating and submitting hardfork governance action."
+# Define directories
+keys_dir="./keys"
+txs_dir="./txs"
 
 # Function to execute cardano-cli commands inside the container
 container_cli() {
   docker exec -ti sancho-node cardano-cli "$@"
 }
+
+# Building, signing and submitting an hardfork change governance action
+echo "Creating and submitting hardfork governance action."
 
 container_cli conway governance action create-hardfork \
   --testnet \

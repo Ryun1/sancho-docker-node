@@ -23,11 +23,11 @@ container_cli conway transaction build \
   --tx-in $(container_cli conway query utxo --address $(cat "$keys_dir/payment.addr") --testnet-magic 4 --out-file /dev/stdout | jq -r 'keys[0]') \
   --change-address $(cat "$keys_dir/payment.addr") \
   --certificate-file "$txs_dir/resign-cold.cert" \
-  --out-file "$txs_dir/resign-cold-tx.raw"
+  --out-file "$txs_dir/resign-cold-tx.unsigned"
 
 # Sign transaction
 container_cli conway transaction sign \
-  --tx-body-file "$txs_dir/resign-cold-tx.raw" \
+  --tx-body-file "$txs_dir/resign-cold-tx.unsigned" \
   --signing-key-file "$keys_dir/payment.skey" \
   --signing-key-file "$keys_dir/cc-cold.skey" \
   --testnet-magic 4 \

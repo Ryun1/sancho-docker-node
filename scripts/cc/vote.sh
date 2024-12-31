@@ -47,11 +47,11 @@ container_cli conway transaction build \
   --change-address "$(cat "$keys_dir/payment.addr")" \
   --vote-file "$txs_dir/ga.vote" \
   --witness-override 2 \
-  --out-file "$txs_dir/vote-tx.raw"
+  --out-file "$txs_dir/vote-tx.unsigned"
 
 # Sign transaction
 container_cli transaction sign \
-  --tx-body-file "$txs_dir/vote-tx.raw" \
+  --tx-body-file "$txs_dir/vote-tx.unsigned" \
   --signing-key-file "$keys_dir/payment.skey" \
   --signing-key-file "$keys_dir/cc-hot.skey" \
   --testnet-magic 4 \

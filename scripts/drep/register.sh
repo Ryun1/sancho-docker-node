@@ -19,10 +19,10 @@ container_cli conway transaction build \
  --tx-in $(container_cli conway query utxo --address $(cat ./keys/payment.addr) --testnet-magic 4 --out-file  /dev/stdout | jq -r 'keys[0]') \
  --change-address $(cat ./keys/payment.addr) \
  --certificate-file ./txs/drep-register.cert \
- --out-file ./txs/drep-reg-tx.raw
+ --out-file ./txs/drep-reg-tx.unsigned
 
 container_cli conway transaction sign \
- --tx-body-file ./txs/drep-reg-tx.raw \
+ --tx-body-file ./txs/drep-reg-tx.unsigned \
  --signing-key-file ./keys/payment.skey \
  --signing-key-file ./keys/drep.skey \
  --testnet-magic 4 \

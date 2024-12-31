@@ -4,3 +4,4 @@ txs/
 dumps/
 node/
 secrets/
+node-*/

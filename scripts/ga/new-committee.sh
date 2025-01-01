@@ -4,10 +4,7 @@
 PREV_GA_TX_HASH=""
 PREV_GA_INDEX="0"
 
-NEW_committee_ANCHOR_URL="ipfs://new-committee.txt"
-NEW_committee_ANCHOR_HASH="ab901c3aeeca631ee5c70147a558fbf191a4af245d8ca001e845d8569d7c38f9"
-
-NEW_committee_SCRIPT_HASH="fa24fb305126805cf2164c161d852a0e7330cf988f1fe558cf7d4a64"
+NEW_MEMBER_CRED="xxx"
 
 METADATA_URL="https://raw.githubusercontent.com/Ryun1/metadata/refs/heads/main/new-const-2"
 METADATA_HASH="01318fd6815453f35a4daac80cbbe3bf46c35dc070eb7dc817f26dfee5042eb8"

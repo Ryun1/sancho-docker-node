@@ -1,5 +1,13 @@
 #!/bin/sh
 
+# ~~~~~~~~~~~~ CHANGE THIS ~~~~~~~~~~~~
+
+CHOICE="yes"
+GA_TX_HASH="66cbbf693a8549d0abb1b5219f1127f8176a4052ef774c11a52ff18ad1845102"
+GA_TX_INDEX="0"
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 # Define directories
 keys_dir="./keys"
 txs_dir="./txs/cc"
@@ -22,34 +30,14 @@ container_cli() {
   docker exec -ti $container_name cardano-cli "$@"
 }
 
-# Function to display script usage
-usage() {
-  echo "Usage: $0 <choice> <ga_id>"
-  echo "Example: $0 yes 66cbbf693a8549d0abb1b5219f1127f8176a4052ef774c11a52ff18ad1845102#0"
-}
-
-# Check if the correct number of arguments is provided
-if [ "$#" -ne 2 ]; then
-  usage
-  exit 1
-fi
-
-# Assigning parameters to variables
-choice="$1"
-ga_id="$2"
-
-# Extract ga_hash and ga_index from ga_id
-ga_hash=$(echo "$ga_id" | cut -d '#' -f 1)
-ga_index=$(echo "$ga_id" | cut -d '#' -f 2)
-
 # Voting on a governance action
-echo "Voting on $ga_id with a $choice."
+echo "Voting on $GA_TX_HASH with a $CHOICE."
 
 # Create vote
 container_cli conway governance vote create \
-  "--$choice" \
-  --governance-action-tx-id "$ga_hash" \
-  --governance-action-index "$ga_index" \
+  "--$CHOICE" \
+  --governance-action-tx-id "$GA_TX_HASH" \
+  --governance-action-index "$GA_TX_INDEX" \
   --cc-hot-verification-key-file "$keys_dir/cc-hot.vkey" \
   --out-file "$txs_dir/ga.vote"
 

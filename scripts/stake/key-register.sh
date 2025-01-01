@@ -27,7 +27,7 @@ echo "Registering your stake key."
 
 container_cli conway stake-address registration-certificate \
  --stake-verification-key-file $keys_dir/stake.vkey \
- --key-reg-deposit-amt 2000000 \
+ --key-reg-deposit-amt "$(container_cli conway query gov-state | jq -r .currentPParams.keyDesposit)" \ \
  --out-file $txs_dir/stake-registration.cert
 
 echo "Building transaction"

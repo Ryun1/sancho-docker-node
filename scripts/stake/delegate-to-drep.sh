@@ -8,9 +8,22 @@ drep_id="3f3d4a84b800b34eb84c6151a955cdd823a0b99e3b886c725b8769e5" # keyhash of 
 keys_dir="./keys"
 txs_dir="./txs/stake"
 
+# Get the script's directory
+script_dir=$(dirname "$0")
+
+# Get the container name from the get-container script
+container_name="$("$script_dir/../helper/get-container.sh")"
+
+if [ -z "$container_name" ]; then
+  echo "Failed to determine a running container."
+  exit 1
+fi
+
+echo "Using running container: $container_name"
+
 # Function to execute cardano-cli commands inside the container
 container_cli() {
-  docker exec -ti sancho-node cardano-cli "$@"
+  docker exec -ti $container_name cardano-cli "$@"
 }
 
 # Delegating to an DRep

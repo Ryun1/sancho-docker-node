@@ -3,21 +3,21 @@
 # Define the keys directory
 keys_dir="./keys"
 
+# Function to execute cardano-cli commands inside the container
+container_cli() {
+  docker exec -ti sancho-node cardano-cli "$@"
+}
+
 # Check if keys already exist
 if [ -f "$keys_dir/drep.id" ]; then
-    echo "Keys already generated."
-    echo "Exiting."
-    exit 0
+  echo "Keys already generated."
+  echo "Exiting."
+  exit 0
 fi
 
 # Generate keys; payment, stake and DRep.
 echo "Generating keys; payment, stake and DRep."
 echo "from keys, generate payment address, stake address and DRep ID."
-
-# Function to execute cardano-cli commands inside the container
-container_cli() {
-  docker exec -ti sancho-node cardano-cli "$@"
-}
 
 # Generate payment keys
 container_cli address key-gen \

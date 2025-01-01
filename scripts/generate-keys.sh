@@ -14,6 +14,13 @@ if [ -z "$container_name" ]; then
   exit 1
 fi
 
+network=$(echo $container_name | cut -d'-' -f2)
+
+if [ $network = "mainnet" ]; then
+  echo "These scripts are not secure and should not be used to create mainnet transactions!!"
+  exit 1
+fi
+
 echo "Using running container: $container_name"
 
 # Function to execute cardano-cli commands inside the container

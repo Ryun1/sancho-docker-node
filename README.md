@@ -1,11 +1,9 @@
 
-# SanchoNet docker node 🤠
+# Cardano Testnet (docker) Node 🤠
 
-**Current version:** node `10.1.3`
+**Current node version:** `10.1.3`
 
-A simple dockerized Cardano node setup, for SanchoNet testing.
-
-Accompanied by a few helpful scripts for cardano-cli to interact with the node and SanchoNet.
+A simple dockerized Cardano node toolkit, for Cardano testnets.
 
 ## Prerequisites
 
@@ -45,6 +43,7 @@ Windows Subsystem for Linux.
 ### 1. Clone this repository.
 
 You may want to make a nice folder/directory for this first.
+
 ```bash
 git clone https://github.com/Ryun1/sancho-docker-node.git
 ```
@@ -72,7 +71,7 @@ wsl
 
 Run the following command.
 ```zsh
-chmod +x ./start-docker.sh ./stop-docker.sh ./scripts/*
+chmod +x ./start-node.sh ./stop-nodes.sh ./scripts/*
 ```
 
 ![Fix permissions](./docs/images/setup-4.png)
@@ -86,6 +85,7 @@ chmod +x ./start-docker.sh ./stop-docker.sh ./scripts/*
 ### Start node
 
 We have a script that:
+
 - pulls the latest SanchoNet node configs
 - pulls the Cardano node docker image
 - builds and runs the Cardano node image
@@ -93,8 +93,10 @@ We have a script that:
 
 In your terminal execute:
 ```bash
-./start-docker.sh
+./start-node.sh
 ```
+
+Then choose which network to work on.
 
 If you want to stop the logs (but the node is still running) you can press `control + c`.
 

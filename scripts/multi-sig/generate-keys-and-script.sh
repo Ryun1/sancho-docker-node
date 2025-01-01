@@ -24,7 +24,7 @@ container_cli() {
 echo "Creating three keys to control a multi-sig script."
 
 # Create directory for keys
-mkdir -p ./$keys_dir/multi-sig
+mkdir -p $keys_dir/multi-sig
 
 # Key 1
 container_cli address key-gen \
@@ -52,22 +52,22 @@ container_cli address key-hash \
 
 echo "Copying the script template."
 
-cp ./scripts/multi-sig/multi-sig-template.json ./$keys_dir/multi-sig/script.json
+cp ./scripts/multi-sig/multi-sig-template.json $keys_dir/multi-sig/script.json
 
 echo "Adding keys to script."
 
 # Remove \r from the key hashes when reading them
-jq --arg kh1 "$(tr -d '\r' < ./$keys_dir/multi-sig/1.keyhash)" \
-   --arg kh2 "$(tr -d '\r' < ./$keys_dir/multi-sig/2.keyhash)" \
-   --arg kh3 "$(tr -d '\r' < ./$keys_dir/multi-sig/3.keyhash)" \
+jq --arg kh1 "$(tr -d '\r' < $keys_dir/multi-sig/1.keyhash)" \
+   --arg kh2 "$(tr -d '\r' < $keys_dir/multi-sig/2.keyhash)" \
+   --arg kh3 "$(tr -d '\r' < $keys_dir/multi-sig/3.keyhash)" \
 '.scripts[0].keyHash = $kh1 | .scripts[1].keyHash = $kh2 | .scripts[2].keyHash = $kh3' \
-"./$keys_dir/multi-sig/script.json" > temp.json && mv temp.json "./$keys_dir/multi-sig/script.json"
+"$keys_dir/multi-sig/script.json" > temp.json && mv temp.json "$keys_dir/multi-sig/script.json"
 
 echo "Creating script address."
 
 cardano-cli address build \
   --testnet-magic 4 \
-  --payment-script-file ./$keys_dir/multi-sig/script.json \
-  --out-file ./$keys_dir/multi-sig/script.addr
+  --payment-script-file $keys_dir/multi-sig/script.json \
+  --out-file $keys_dir/multi-sig/script.addr
 
 echo "Done!"

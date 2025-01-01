@@ -1,9 +1,9 @@
 
-# Cardano Testnet (docker) Node 🤠
+# Cardano Testnet (docker) Node Toolkit 🤠
+
+A simple dockerized Cardano node toolkit, for running a Cardano testnet nodes and interacting with the networks.
 
 **Current node version:** `10.1.3`
-
-A simple dockerized Cardano node toolkit, for Cardano testnets.
 
 ## Prerequisites
 
@@ -45,12 +45,12 @@ Windows Subsystem for Linux.
 You may want to make a nice folder/directory for this first.
 
 ```bash
-git clone https://github.com/Ryun1/sancho-docker-node.git
+git clone https://github.com/Ryun1/testnet-docker-node.git
 ```
 
-### 2. Open `sancho-docker-node` from within Visual Studio Code.
+### 2. Open `testnet-docker-node` from within Visual Studio Code.
 
-Open Visual Studio Code and then go `File > Open Folder` selecting `sancho-docker-node` folder.
+Open Visual Studio Code and then go `File > Open Folder` selecting `testnet-docker-node` folder.
 
 ![Open Folder VS Code](./docs/images/setup-2.png)
 
@@ -76,7 +76,7 @@ chmod +x ./start-node.sh ./stop-nodes.sh ./scripts/*
 
 ![Fix permissions](./docs/images/setup-4.png)
 
-**Note:** Make sure your terminal shows the correct directory `sancho-docker-node`.
+**Note:** Make sure your terminal shows the correct directory `testnet-docker-node`.
 
 ## Basic Usage
 
@@ -86,7 +86,7 @@ chmod +x ./start-node.sh ./stop-nodes.sh ./scripts/*
 
 We have a script that:
 
-- pulls the latest SanchoNet node configs
+- pulls the latest testnet node configs
 - pulls the Cardano node docker image
 - builds and runs the Cardano node image
 - pushes the node logs to the terminal
@@ -199,7 +199,7 @@ Get yourself some test ada, so you can pay for transaction fees.
 
 Open your new address from [./keys/payment.addr](./keys/payment.addr).
 
-Go to the [SanchoNet faucet](https://sancho.network/faucet) and request some tAda sent to your new address.
+Go to the [SanchoNet faucet](https://sancho.network/faucet) or [Testnet faucet](https://docs.cardano.org/cardano-testnets/tools/faucet) and request some tAda sent to your new address.
 
 ### Run Scripts
 

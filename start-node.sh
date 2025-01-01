@@ -1,7 +1,18 @@
-#!/bin/bash
+#!/bin/sh
 
-# Network
-network="preview"
+# Define the list of available networks
+available_networks=("mainnet" "preprod" "preview" "sanchonet")
+
+# Prompt the user to select a network
+echo "Please select a network:"
+select network in "${available_networks[@]}"; do
+  if [ -n "$network" ]; then
+    echo "You have selected: $network"
+    break
+  else
+    echo "Invalid selection. Please try again."
+  fi
+done
 
 # Set directory locations
 base_dir="$(pwd)"
@@ -56,7 +67,9 @@ cd "$base_dir" || exit
 
 # Export environment variables for use in docker-compose.yml
 export NETWORK=$network
-export NETWORK_ID=2
+
+# Get the network magic from the shelley-genesis.json file and pass it into the container
+export NETWORK_ID=$(jq -r '.networkMagic' "$config_dir/shelley-genesis.json")
 
 # Substitute the NETWORK variable in the docker-compose.yml file and start the Docker container
 envsubst < docker-compose.yml | docker-compose -f - up -d --build

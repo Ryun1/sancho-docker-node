@@ -21,6 +21,14 @@ config_dir="$node_dir/config"
 db_dir="$node_dir/db"
 ipc_dir="$node_dir/ipc"
 
+# Transaction dirs
+tx_dir="$base_dir/txs"
+stake_dir="$tx_dir/stake"
+cc_dir="$tx_dir/cc"
+drep_dir="$tx_dir/drep"
+ga_dir="$tx_dir/ga"
+multi_sig_dir="$tx_dir/multi-sig"
+
 # Base URL for node config files
 config_base_url="https://book.play.dev.cardano.org/environments/$network/"
 
@@ -45,6 +53,13 @@ reset_dir() {
 create_dir "$db_dir"
 reset_dir "$ipc_dir"
 create_dir "$config_dir"
+# Transaction dirs
+create_dir "$tx_dir"
+create_dir "$stake_dir"
+create_dir "$cc_dir"
+create_dir "$drep_dir"
+create_dir "$ga_dir"
+create_dir "$multi_sig_dir"
 
 # List of JSON files to download
 config_files=(

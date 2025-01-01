@@ -29,6 +29,9 @@ drep_dir="$tx_dir/drep"
 ga_dir="$tx_dir/ga"
 multi_sig_dir="$tx_dir/multi-sig"
 
+# Dumps dir
+dumps_dir="./dumps/$network"
+
 # Base URL for node config files
 config_base_url="https://book.play.dev.cardano.org/environments/$network/"
 
@@ -60,6 +63,8 @@ create_dir "$cc_dir"
 create_dir "$drep_dir"
 create_dir "$ga_dir"
 create_dir "$multi_sig_dir"
+# Dumps dir
+create_dir "$dumps_dir"
 
 # List of JSON files to download
 config_files=(

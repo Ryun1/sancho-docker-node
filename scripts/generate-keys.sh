@@ -56,11 +56,9 @@ container_cli conway governance drep id \
 container_cli address build \
  --payment-verification-key-file "$keys_dir/payment.vkey" \
  --stake-verification-key-file "$keys_dir/stake.vkey" \
- --out-file "$keys_dir/payment.addr" \
- --testnet-magic 4
+ --out-file "$keys_dir/payment.addr"
 
 # Derive stake address from stake keys
 container_cli stake-address build \
  --stake-verification-key-file "$keys_dir/stake.vkey" \
- --out-file "$keys_dir/stake.addr" \
- --testnet-magic 4
+ --out-file "$keys_dir/stake.addr"

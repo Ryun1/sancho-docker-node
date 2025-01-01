@@ -66,7 +66,6 @@ jq --arg kh1 "$(tr -d '\r' < $keys_dir/multi-sig/1.keyhash)" \
 echo "Creating script address."
 
 cardano-cli address build \
-  --testnet-magic 4 \
   --payment-script-file $keys_dir/multi-sig/script.json \
   --out-file $keys_dir/multi-sig/script.addr
 

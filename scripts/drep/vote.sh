@@ -55,8 +55,7 @@ container_cli conway governance vote create \
 echo "Building transaction"
 
 container_cli conway transaction build \
-  --testnet-magic 4 \
-  --tx-in "$(container_cli conway query utxo --address "$(cat $keys_dir/payment.addr)" --testnet-magic 4 --out-file /dev/stdout | jq -r 'keys[0]')" \
+  --tx-in "$(container_cli conway query utxo --address "$(cat $keys_dir/payment.addr)" --out-file /dev/stdout | jq -r 'keys[0]')" \
   --change-address "$(cat $keys_dir/payment.addr)" \
   --vote-file $txs_dir/ga.vote \
   --witness-override 2 \
@@ -66,7 +65,6 @@ container_cli transaction sign \
   --tx-body-file $txs_dir/vote-tx.unsigned \
   --signing-key-file $keys_dir/drep.skey \
   --signing-key-file $keys_dir/payment.skey \
-  --testnet-magic 4 \
   --out-file $txs_dir/vote-tx.signed
 
-container_cli transaction submit --testnet-magic 4 --tx-file $txs_dir/vote-tx.signed
+container_cli transaction submit --tx-file $txs_dir/vote-tx.signed

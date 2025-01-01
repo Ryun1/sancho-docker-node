@@ -22,11 +22,9 @@ container_cli() {
 echo "Dumping DReps from ledger state."
 
 container_cli conway query drep-state \
-  --testnet-magic 4 \
   --all-dreps > ./dumps/dreps-info.json
 
 container_cli conway query drep-stake-distribution \
-  --testnet-magic 4 \
   --all-dreps > ./dumps/dreps-power.json
 
 # Dumping ledger state
@@ -45,7 +43,7 @@ container_cli conway query ledger-state \
 echo "Dumping governance actions in ledger state."
 
 container_cli conway query gov-state \
-  --testnet-magic 4 | jq -r '.proposals' > ./dumps/governance-actions.json
+  | jq -r '.proposals' > ./dumps/governance-actions.json
 
 # Dumping out CC state
 echo "Dumping constitutional committee state."

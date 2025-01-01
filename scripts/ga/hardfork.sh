@@ -36,38 +36,38 @@ echo "Creating and submitting hardfork governance action."
 container_cli conway governance action create-hardfork \
   --testnet \
   --governance-action-deposit $(container_cli conway query gov-state --testnet-magic 4 | jq -r '.currentPParams.govActionDeposit') \
-  --deposit-return-stake-verification-key-file ./$keys_dir/stake.vkey \
+  --deposit-return-stake-verification-key-file $keys_dir/stake.vkey \
   --anchor-url "$METADATA_URL" \
   --anchor-data-hash "$METADATA_HASH" \
   --protocol-major-version 11 \
   --protocol-minor-version 0 \
   --prev-governance-action-tx-id "$PREV_GA_TX_HASH" \
   --prev-governance-action-index "$PREV_GA_INDEX" \
-  --out-file ./$txs_dir/hardfork.action
+  --out-file $txs_dir/hardfork.action
 
 echo "Building transaction"
 
 container_cli conway transaction build \
  --testnet-magic 4 \
- --tx-in "$(container_cli conway query utxo --address "$(cat ./$keys_dir/payment.addr)" --testnet-magic 4 --out-file /dev/stdout | jq -r 'keys[0]')" \
- --tx-in "$(container_cli conway query utxo --address "$(cat ./$keys_dir/payment.addr)" --testnet-magic 4 --out-file /dev/stdout | jq -r 'keys[1]')" \
- --tx-in "$(container_cli conway query utxo --address "$(cat ./$keys_dir/payment.addr)" --testnet-magic 4 --out-file /dev/stdout | jq -r 'keys[3]')" \
- --tx-in-collateral "$(container_cli conway query utxo --address "$(cat ./$keys_dir/payment.addr)" --testnet-magic 4 --out-file /dev/stdout | jq -r 'keys[1]')" \
- --proposal-file ./$txs_dir/hardfork.action \
- --change-address "$(cat ./$keys_dir/payment.addr)" \
- --out-file ./$txs_dir/hardfork-action-tx.unsigned
+ --tx-in "$(container_cli conway query utxo --address "$(cat $keys_dir/payment.addr)" --testnet-magic 4 --out-file /dev/stdout | jq -r 'keys[0]')" \
+ --tx-in "$(container_cli conway query utxo --address "$(cat $keys_dir/payment.addr)" --testnet-magic 4 --out-file /dev/stdout | jq -r 'keys[1]')" \
+ --tx-in "$(container_cli conway query utxo --address "$(cat $keys_dir/payment.addr)" --testnet-magic 4 --out-file /dev/stdout | jq -r 'keys[3]')" \
+ --tx-in-collateral "$(container_cli conway query utxo --address "$(cat $keys_dir/payment.addr)" --testnet-magic 4 --out-file /dev/stdout | jq -r 'keys[1]')" \
+ --proposal-file $txs_dir/hardfork.action \
+ --change-address "$(cat $keys_dir/payment.addr)" \
+ --out-file $txs_dir/hardfork-action-tx.unsigned
 
 echo "Signing transaction"
 
 container_cli conway transaction sign \
- --tx-body-file ./$txs_dir/hardfork-action-tx.unsigned \
- --signing-key-file ./$keys_dir/payment.skey \
+ --tx-body-file $txs_dir/hardfork-action-tx.unsigned \
+ --signing-key-file $keys_dir/payment.skey \
  --testnet-magic 4 \
- --out-file ./$txs_dir/hardfork-action-tx.signed
+ --out-file $txs_dir/hardfork-action-tx.signed
 
 echo "Submitting transaction"
 
 container_cli conway transaction submit \
  --testnet-magic 4 \
- --tx-file ./$txs_dir/hardfork-action-tx.signed
+ --tx-file $txs_dir/hardfork-action-tx.signed
 

@@ -16,6 +16,8 @@ container_cli() {
 # Send ada to the multisig payment script
 echo "Sending $LOVELACE_AMOUNT lovelace to the multisig payment address."
 
+echo "Building transaction"
+
 container_cli conway transaction build \
  --testnet-magic 4 \
  --tx-in $(container_cli conway query utxo --address $(cat ./$keys_dir/payment.addr) --testnet-magic 4 --out-file  /dev/stdout | jq -r 'keys[0]') \
@@ -27,6 +29,8 @@ container_cli transaction sign \
   --tx-body-file ./$txs_dir/multi-sig/send-ada-to-script.unsigned \
   --signing-key-file ./$keys_dir/payment.skey \
   --out-file ./$txs_dir/multi-sig/send-ada-to-script.signed
+
+echo "Submitting transaction"
 
 container_cli conway transaction submit \
  --testnet-magic 4 \

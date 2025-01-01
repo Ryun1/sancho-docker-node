@@ -39,6 +39,8 @@ container_cli conway governance vote create \
   --drep-verification-key-file $keys_dir/drep.vkey \
   --out-file $txs_dir/ga.vote
 
+echo "Building transaction"
+
 container_cli conway transaction build \
   --testnet-magic 4 \
   --tx-in "$(container_cli conway query utxo --address "$(cat $keys_dir/payment.addr)" --testnet-magic 4 --out-file /dev/stdout | jq -r 'keys[0]')" \

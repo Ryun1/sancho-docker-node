@@ -16,6 +16,8 @@ container_cli conway stake-address vote-delegation-certificate \
  --drep-key-hash "$(cat $keys_dir/drep.id)" \
  --out-file $txs_dir/vote-deleg-key-hash.cert
 
+echo "Building transaction"
+
 container_cli conway transaction build \
  --testnet-magic 4 \
  --witness-override 2 \
@@ -24,12 +26,16 @@ container_cli conway transaction build \
  --certificate-file $txs_dir/vote-deleg-key-hash.cert \
  --out-file $txs_dir/vote-deleg-tx.unsigned
 
+echo "Signing transaction"
+
 container_cli conway transaction sign \
  --tx-body-file $txs_dir/vote-deleg-tx.unsigned \
  --signing-key-file $keys_dir/payment.skey \
  --signing-key-file $keys_dir/stake.skey \
  --testnet-magic 4 \
  --out-file $txs_dir/vote-deleg-tx.signed
+
+echo "Submitting transaction"
 
 container_cli conway transaction submit \
  --testnet-magic 4 \

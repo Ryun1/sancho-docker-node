@@ -39,6 +39,8 @@ container_cli conway governance action create-constitution \
   # --prev-governance-action-tx-id "$PREV_GA_TX_HASH" \
   # --prev-governance-action-index "$PREV_GA_INDEX" \
 
+echo "Building transaction"
+
 container_cli conway transaction build \
  --testnet-magic 4 \
  --tx-in "$(container_cli conway query utxo --address "$(cat ./$keys_dir/payment.addr)" --testnet-magic 4 --out-file /dev/stdout | jq -r 'keys[0]')" \
@@ -48,11 +50,15 @@ container_cli conway transaction build \
  --change-address "$(cat ./$keys_dir/payment.addr)" \
  --out-file ./$txs_dir/new-constitution-action-tx.unsigned
 
+echo "Signing transaction"
+
 container_cli conway transaction sign \
  --tx-body-file ./$txs_dir/new-constitution-action-tx.unsigned \
  --signing-key-file ./$keys_dir/payment.skey \
  --testnet-magic 4 \
  --out-file ./$txs_dir/new-constitution-action-tx.signed
+
+echo "Submitting transaction"
 
 container_cli conway transaction submit \
  --testnet-magic 4 \

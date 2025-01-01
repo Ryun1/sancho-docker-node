@@ -1,24 +1,43 @@
-name: test start node
+name: Test Start Node
 
 on:
+  push:
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
 jobs:
-  test-start-docker:
+  test:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Check out the repository to the runner
-        uses: actions/checkout@v4  
-      
-      - name: Set up Docker
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y docker-compose
-      
-      - name: Start node, wait 60s then stop node
-        shell: bash
-        run: |
-          /bin/bash ./start-docker.sh 2>&1 | tee script_output.txt &
-          sleep 60
-          /bin/bash ./stop-docker.sh
+    - uses: actions/checkout@v3
+
+    - name: Set up Docker
+      uses: docker/setup-buildx-action@v1
+
+    - name: Install Docker Compose
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y docker-compose
+
+    - name: Start Preprod node, wait 30s then stop node
+      shell: bash
+      run: |
+        printf "1\n" | /bin/bash ./start-node.sh 2>&1 | tee script_output.txt &
+        sleep 30
+        /bin/bash ./stop-nodes.sh
+
+    - name: Start Preview node, wait 30s then stop node
+      shell: bash
+      run: |
+        printf "2\n" | /bin/bash ./start-node.sh 2>&1 | tee script_output.txt &
+        sleep 30
+        /bin/bash ./stop-nodes.sh
+
+    - name: Start SanchoNet node, wait 30s then stop node
+      shell: bash
+      run: |
+        printf "3\n" | /bin/bash ./start-node.sh 2>&1 | tee script_output.txt &
+        sleep 30
+        /bin/bash ./stop-nodes.sh

@@ -3,8 +3,8 @@
 # Get the script's directory
 script_dir=$(dirname "$0")
 
-# Get the container name from the check-running-containers script
-container_name="$("$script_dir/../helper/check-running-containers.sh")"
+# Get the container name from the get-container script
+container_name="$("$script_dir/../helper/get-container.sh")"
 
 if [ -z "$container_name" ]; then
   echo "Failed to determine a running container."
@@ -19,5 +19,4 @@ container_cli() {
 }
 
 # Query the tip of the blockchain as observed by the node
-container_cli conway query tip \
-  --testnet-magic 4
+container_cli conway query tip

@@ -4,7 +4,10 @@ services:
   cardano-node-${NETWORK}:
     container_name: node-${NETWORK}-container
     network_mode: "host"
-    build: ./
+    build:
+      context: ./
+      args:
+        CARDANO_NODE_NETWORK_ID: ${NETWORK_ID}
     restart: always
     volumes:
       - ./node-${NETWORK}/db:/data/db

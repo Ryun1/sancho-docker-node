@@ -50,22 +50,20 @@ container_cli hash script \
 
 container_cli conway governance drep registration-certificate \
  --drep-script-hash "$(cat $txs_dir/multisig-drep.id)" \
- --key-reg-deposit-amt "$(container_cli conway query gov-state --testnet-magic 4 | jq -r .currentPParams.dRepDeposit)" \
+ --key-reg-deposit-amt "$(container_cli conway query gov-state | jq -r .currentPParams.dRepDeposit)" \
  --out-file $txs_dir/drep-multisig-register.cert
 
 echo "Building transaction"
 
 container_cli conway transaction build \
- --testnet-magic 4 \
  --witness-override 2 \
- --tx-in $(container_cli conway query utxo --address $(cat $keys_dir/payment.addr) --testnet-magic 4 --out-file  /dev/stdout | jq -r 'keys[0]') \
+ --tx-in $(container_cli conway query utxo --address $(cat $keys_dir/payment.addr) --out-file  /dev/stdout | jq -r 'keys[0]') \
  --change-address $(cat $keys_dir/payment.addr) \
  --certificate-file $txs_dir/drep-multisig-register.cert \
  --certificate-script-file $txs_dir/multisig-drep.json \
  --out-file $txs_dir/reg-drep-multisig-register.unsigned
 
 container_cli conway transaction witness \
-  --testnet-magic 4 \
   --tx-body-file $txs_dir/reg-drep-multisig-register.unsigned \
   --signing-key-file $keys_dir/payment.skey \
   --out-file $txs_dir/reg-drep-multisig-register.witness
@@ -78,5 +76,4 @@ container_cli transaction assemble \
 echo "Submitting transaction"
 
 container_cli conway transaction submit \
- --testnet-magic 4 \
  --tx-file $txs_dir/reg-drep-multisig-register.signed

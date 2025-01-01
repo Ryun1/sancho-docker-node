@@ -34,7 +34,7 @@ echo "Creating and submitting info governance action."
 
 container_cli conway governance action create-info \
   --testnet \
-  --governance-action-deposit $(container_cli conway query gov-state --testnet-magic 4 | jq -r '.currentPParams.govActionDeposit') \
+  --governance-action-deposit $(container_cli conway query gov-state | jq -r '.currentPParams.govActionDeposit') \
   --deposit-return-stake-verification-key-file $keys_dir/stake.vkey \
   --anchor-url $METADATA_URL \
   --anchor-data-hash $METADATA_HASH \
@@ -43,8 +43,7 @@ container_cli conway governance action create-info \
 echo "Building transaction"
 
 container_cli conway transaction build \
- --testnet-magic 4 \
- --tx-in "$(container_cli conway query utxo --address "$(cat $keys_dir/payment.addr)" --testnet-magic 4 --out-file /dev/stdout | jq -r 'keys[0]')" \
+ --tx-in "$(container_cli conway query utxo --address "$(cat $keys_dir/payment.addr)" --out-file /dev/stdout | jq -r 'keys[0]')" \
  --change-address "$(cat $keys_dir/payment.addr)" \
  --proposal-file $txs_dir/info.action \
  --out-file $txs_dir/info-action-tx.unsigned
@@ -54,11 +53,9 @@ echo "Signing transaction"
 container_cli conway transaction sign \
  --tx-body-file $txs_dir/info-action-tx.unsigned \
  --signing-key-file $keys_dir/payment.skey \
- --testnet-magic 4 \
  --out-file $txs_dir/info-action-tx.signed
 
 echo "Submitting transaction"
 
 container_cli conway transaction submit \
- --testnet-magic 4 \
  --tx-file $txs_dir/info-action-tx.signed

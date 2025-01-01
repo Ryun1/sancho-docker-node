@@ -17,6 +17,8 @@ container_cli conway stake-address deregistration-certificate \
  --key-reg-deposit-amt $(container_cli conway query gov-state --testnet-magic 4 | jq -r .currentPParams.keyDeposit) \
  --out-file ./$txs_dir/stake-deregistration.cert
 
+echo "Building transaction"
+
 container_cli conway transaction build \
  --testnet-magic 4 \
  --witness-override 2 \

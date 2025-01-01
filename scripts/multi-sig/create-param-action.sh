@@ -39,6 +39,8 @@ container_cli conway governance action create-protocol-parameters-update \
   --key-reg-deposit-amt 3000000 \
   --out-file ./$txs_dir/multi-sig/parameter.action
 
+echo "Building transaction"
+
 container_cli conway transaction build \
  --testnet-magic 4 \
  --tx-in "$(container_cli conway query utxo --address "$(cat ./$keys_dir/multi-sig/script.addr)" --testnet-magic 4 --out-file /dev/stdout | jq -r 'keys[0]')" \
@@ -90,6 +92,8 @@ container_cli transaction assemble \
   --out-file ./$txs_dir/multi-sig/parameter-action-tx.signed
 
 # Submit Transaction
+echo "Submitting transaction"
+
 container_cli conway transaction submit \
  --testnet-magic 4 \
  --tx-file ./$txs_dir/multi-sig/parameter-action-tx.signed

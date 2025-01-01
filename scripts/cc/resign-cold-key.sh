@@ -17,6 +17,8 @@ container_cli conway governance committee create-cold-key-resignation-certificat
   --out-file "$txs_dir/resign-cold.cert"
 
 # Build transaction
+echo "Building transaction"
+
 container_cli conway transaction build \
   --testnet-magic 4 \
   --witness-override 2 \
@@ -26,6 +28,8 @@ container_cli conway transaction build \
   --out-file "$txs_dir/resign-cold-tx.unsigned"
 
 # Sign transaction
+echo "Signing transaction"
+
 container_cli conway transaction sign \
   --tx-body-file "$txs_dir/resign-cold-tx.unsigned" \
   --signing-key-file "$keys_dir/payment.skey" \
@@ -34,6 +38,8 @@ container_cli conway transaction sign \
   --out-file "$txs_dir/resign-cold-tx.signed"
 
 # Submit transaction
+echo "Submitting transaction"
+
 container_cli conway transaction submit \
   --testnet-magic 4 \
   --tx-file "$txs_dir/resign-cold-tx.signed"

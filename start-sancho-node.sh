@@ -54,8 +54,12 @@ done
 # Return to the base directory
 cd "$base_dir" || exit
 
+# Export environment variables for use in docker-compose.yml
+export NETWORK=$network
+export NETWORK_ID=4
+
 # Substitute the NETWORK variable in the docker-compose.yml file and start the Docker container
-NETWORK=$network envsubst < docker-compose.yml | docker-compose -f - up -d --build
+envsubst < docker-compose.yml | docker-compose -f - up -d --build
 
 # Forward the logs to the terminal
 docker logs "node-$network-container" --follow

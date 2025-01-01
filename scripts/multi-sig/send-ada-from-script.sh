@@ -8,9 +8,22 @@ LOVELACE_AMOUNT=1000000
 keys_dir="./keys"
 txs_dir="./txs/ga"
 
+# Get the script's directory
+script_dir=$(dirname "$0")
+
+# Get the container name from the get-container script
+container_name="$("$script_dir/../helper/get-container.sh")"
+
+if [ -z "$container_name" ]; then
+  echo "Failed to determine a running container."
+  exit 1
+fi
+
+echo "Using running container: $container_name"
+
 # Function to execute cardano-cli commands inside the container
 container_cli() {
-  docker exec -ti sancho-node cardano-cli "$@"
+  docker exec -ti $container_name cardano-cli "$@"
 }
 
 # Send ada to the multisig payment script

@@ -11,9 +11,22 @@ METADATA_HASH="93106d082a93e94df5aff74f678438bae3a647dac63465fbfcde6a3058f41a1e"
 keys_dir="./keys"
 txs_dir="./txs/ga"
 
+# Get the script's directory
+script_dir=$(dirname "$0")
+
+# Get the container name from the get-container script
+container_name="$("$script_dir/../helper/get-container.sh")"
+
+if [ -z "$container_name" ]; then
+  echo "Failed to determine a running container."
+  exit 1
+fi
+
+echo "Using running container: $container_name"
+
 # Function to execute cardano-cli commands inside the container
 container_cli() {
-  docker exec -ti sancho-node cardano-cli "$@"
+  docker exec -ti $container_name cardano-cli "$@"
 }
 
 # Building, signing and submitting an info governance action

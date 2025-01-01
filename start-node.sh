@@ -71,7 +71,7 @@ export NETWORK=$network
 # Get the network magic from the shelley-genesis.json file and pass it into the container
 export NETWORK_ID=$(jq -r '.networkMagic' "$config_dir/shelley-genesis.json")
 
-# Substitute the NETWORK variable in the docker-compose.yml file and start the Docker container
+# Substitute the variables in the docker-compose.yml file and start the Docker container
 envsubst < docker-compose.yml | docker-compose -f - up -d --build
 
 # Forward the logs to the terminal

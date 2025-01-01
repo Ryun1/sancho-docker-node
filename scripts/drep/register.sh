@@ -2,13 +2,13 @@
 
 # Define directories
 keys_dir="./keys"
-txs_dir="./txs/drep"
+txs_dir="./txs/stake"
 
 # Get the script's directory
 script_dir=$(dirname "$0")
 
-# Get the container name from the check-running-containers script
-container_name=$("$script_dir/../helper/check-running-containers.sh")
+# Get the container name from the get-container script
+container_name="$("$script_dir/../helper/get-container.sh")"
 
 if [ -z "$container_name" ]; then
   echo "Failed to determine a running container."
@@ -16,6 +16,11 @@ if [ -z "$container_name" ]; then
 fi
 
 echo "Using running container: $container_name"
+
+# Function to execute cardano-cli commands inside the container
+container_cli() {
+  docker exec -ti $container_name cardano-cli "$@"
+}
 
 # Registering you as a drep
 echo "Registering you as a DRep."

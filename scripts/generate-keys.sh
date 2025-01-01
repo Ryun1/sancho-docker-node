@@ -18,7 +18,8 @@ network=$(echo $container_name | cut -d'-' -f2)
 
 if [ $network = "mainnet" ]; then
   echo "These scripts are not secure and should not be used to create mainnet transactions!!"
-  exit 1
+  echo "Exiting."
+  exit 0
 fi
 
 echo "Using running container: $container_name"

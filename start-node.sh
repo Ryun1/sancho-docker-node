@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Define the list of available networks
-available_networks=("mainnet" "preprod" "preview" "sanchonet")
+available_networks=("preprod" "preview" "sanchonet")
 
 # Prompt the user to select a network
 echo "Please select a network:"

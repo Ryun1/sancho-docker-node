@@ -19,5 +19,4 @@ container_cli() {
 }
 
 # Query the stake pools
-container_cli conway query stake-pools \
-  --testnet-magic 4
+container_cli conway query stake-pools

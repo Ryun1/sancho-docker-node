@@ -21,23 +21,19 @@ container_cli() {
 # Query DReps from ledger state
 echo "Dumping DReps from ledger state."
 
-container_cli conway query drep-state \
-  --all-dreps > ./dumps/dreps-info.json
+container_cli conway query drep-state > ./dumps/dreps-info.json
 
-container_cli conway query drep-stake-distribution \
-  --all-dreps > ./dumps/dreps-power.json
+container_cli conway query drep-stake-distribution > ./dumps/dreps-power.json
 
 # Dumping ledger state
 echo "Dumping governance ledger state."
 
-container_cli conway query gov-state \
-  --testnet-magic 4 > ./dumps/gov-state.json
+container_cli conway query gov-state > ./dumps/gov-state.json
 
 # Dumping ledger state
 echo "Dumping whole ledger state."
 
-container_cli conway query ledger-state \
-  --testnet-magic 4 > ./dumps/ledger-state.json
+container_cli conway query ledger-state > ./dumps/ledger-state.json
 
 # Dumping proposals stored in ledger state
 echo "Dumping governance actions in ledger state."
@@ -48,11 +44,9 @@ container_cli conway query gov-state \
 # Dumping out CC state
 echo "Dumping constitutional committee state."
 
-container_cli conway query committee-state \
-  --testnet-magic 4 > ./dumps/committee.json
+container_cli conway query committee-state > ./dumps/committee.json
 
 # Dumping out parameters state
 echo "Dumping protocol parameters state."
 
-container_cli conway query protocol-parameters \
-  --testnet-magic 4 > ./dumps/params.json
+container_cli conway query protocol-parameters > ./dumps/params.json
